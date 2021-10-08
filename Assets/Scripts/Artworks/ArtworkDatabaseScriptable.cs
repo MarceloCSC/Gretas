@@ -6,8 +6,8 @@ namespace Gretas.Artworks
     [CreateAssetMenu(fileName = "NewArtworkDatabase", menuName = "New Artwork Database")]
     public class ArtworkDatabaseScriptable : ScriptableObject
     {
-        [SerializeField] private List<Artwork> _artworks;
+        [SerializeField] private List<ArtworkInfo> _artworksInfo;
 
-        public List<Artwork> Artworks => _artworks;
+        public List<ArtworkInfo> ArtworksInfo => _artworksInfo;
     }
 }

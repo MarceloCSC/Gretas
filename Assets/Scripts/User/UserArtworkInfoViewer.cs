@@ -11,14 +11,14 @@ namespace Gretas.User
         [SerializeField] private GameObject _artworkInfoPanel;
         [SerializeField] private GameObject _expandButton;
 
-        private Artwork _currentArtwork;
-        private ArtworkLoader _artworkLoader;
+        private ArtworkInfo _currentArtworkInfo;
+        private ArtworkInfoLoader _artworkInfoLoader;
 
         private void Awake()
         {
             _artworkInfoPanel.SetActive(false);
             _expandButton.SetActive(false);
-            _artworkLoader = FindObjectOfType<ArtworkLoader>();
+            _artworkInfoLoader = FindObjectOfType<ArtworkInfoLoader>();
         }
 
         private void OnEnable()
@@ -42,45 +42,45 @@ namespace Gretas.User
 
         public void LoadArtworkInfo(string frameId)
         {
-            _currentArtwork = _artworkLoader.GetArtwork(frameId);
+            _currentArtworkInfo = _artworkInfoLoader.GetArtworkInfo(frameId);
 
-            if (_currentArtwork != null)
+            if (_currentArtworkInfo != null)
             {
                 var stringBuilder = new StringBuilder();
 
-                if (_currentArtwork.artist != string.Empty)
+                if (_currentArtworkInfo.artist != string.Empty)
                 {
-                    stringBuilder.AppendLine($"Artista: {_currentArtwork.artist}");
+                    stringBuilder.AppendLine($"Artista: {_currentArtworkInfo.artist}");
                 }
 
-                if (_currentArtwork.title != string.Empty)
+                if (_currentArtworkInfo.title != string.Empty)
                 {
-                    stringBuilder.AppendLine($"Título: {_currentArtwork.title}");
+                    stringBuilder.AppendLine($"Título: {_currentArtworkInfo.title}");
                 }
 
-                if (_currentArtwork.location != string.Empty)
+                if (_currentArtworkInfo.location != string.Empty)
                 {
-                    stringBuilder.AppendLine($"Local: {_currentArtwork.location}");
+                    stringBuilder.AppendLine($"Local: {_currentArtworkInfo.location}");
                 }
 
-                if (_currentArtwork.date != string.Empty)
+                if (_currentArtworkInfo.date != string.Empty)
                 {
-                    stringBuilder.AppendLine($"Data: {_currentArtwork.date}");
+                    stringBuilder.AppendLine($"Data: {_currentArtworkInfo.date}");
                 }
 
-                if (_currentArtwork.currentLocation != string.Empty)
+                if (_currentArtworkInfo.currentLocation != string.Empty)
                 {
-                    stringBuilder.AppendLine($"Localização atual: {_currentArtwork.currentLocation}");
+                    stringBuilder.AppendLine($"Localização atual: {_currentArtworkInfo.currentLocation}");
                 }
 
-                if (_currentArtwork.dimensions != string.Empty)
+                if (_currentArtworkInfo.dimensions != string.Empty)
                 {
-                    stringBuilder.AppendLine($"Dimensões: {_currentArtwork.dimensions}");
+                    stringBuilder.AppendLine($"Dimensões: {_currentArtworkInfo.dimensions}");
                 }
 
-                if (_currentArtwork.materials != string.Empty)
+                if (_currentArtworkInfo.materials != string.Empty)
                 {
-                    stringBuilder.AppendLine($"Materiais: {_currentArtwork.materials}");
+                    stringBuilder.AppendLine($"Materiais: {_currentArtworkInfo.materials}");
                 }
 
                 _artworkInfoPanel.GetComponentInChildren<TextMeshProUGUI>().text = stringBuilder.ToString();

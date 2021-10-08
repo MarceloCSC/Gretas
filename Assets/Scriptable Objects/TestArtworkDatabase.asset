@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce3993ebf57440c47adeb060b74c5042, type: 3}
   m_Name: TestArtworkDatabase
   m_EditorClassIdentifier: 
-  _artworks:
-  - id: 
+  _artworksInfo:
+  - artworkId: 
     frameId: 0001
-    artist: Marcelo Camargo
-    title: Obra Teste
+    artist: Marcelo
+    title: Teste
     location: Rio de Janeiro
-    date: 25/10/20
+    date: 20/10/86
     currentLocation: 
-    dimensions: 20x10
+    dimensions: 100x54
     materials: 

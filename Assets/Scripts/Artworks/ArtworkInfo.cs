@@ -1,9 +1,9 @@
 namespace Gretas.Artworks
 {
     [System.Serializable]
-    public class Artwork
+    public class ArtworkInfo
     {
-        public string id;
+        public string artworkId;
         public string frameId;
         public string artist;
         public string title;

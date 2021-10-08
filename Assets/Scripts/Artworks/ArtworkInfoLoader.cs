@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Gretas.Artworks
 {
-    public class ArtworkLoader : MonoBehaviour
+    public class ArtworkInfoLoader : MonoBehaviour
     {
         [SerializeField] private ArtworkDatabaseScriptable _artworkDatabase;
 
@@ -11,30 +11,30 @@ namespace Gretas.Artworks
         private readonly string _fileName = "artworkData";
         private readonly string _fileExtension = ".json";
 
-        public Artwork GetArtwork(string frameId)
+        public ArtworkInfo GetArtworkInfo(string frameId)
         {
-            foreach (var artwork in _artworkDatabase.Artworks)
+            foreach (var artworkInfo in _artworkDatabase.ArtworksInfo)
             {
-                if (artwork.frameId == frameId)
+                if (artworkInfo.frameId == frameId)
                 {
-                    return artwork;
+                    return artworkInfo;
                 }
             }
 
-            return LoadArtwork(frameId);
+            return LoadArtworkInfo(frameId);
         }
 
-        private Artwork LoadArtwork(string frameId)
+        private ArtworkInfo LoadArtworkInfo(string frameId)
         {
             var fullPath = Application.persistentDataPath + _directory + _fileName + frameId + _fileExtension;
 
             if (File.Exists(fullPath))
             {
-                var artwork = JsonUtility.FromJson<Artwork>(File.ReadAllText(fullPath));
+                var artworkInfo = JsonUtility.FromJson<ArtworkInfo>(File.ReadAllText(fullPath));
 
-                _artworkDatabase.Artworks.Add(artwork);
+                _artworkDatabase.ArtworksInfo.Add(artworkInfo);
 
-                return artwork;
+                return artworkInfo;
             }
 
             Debug.LogWarning("The corresponding artwork could not be found in our database.");
