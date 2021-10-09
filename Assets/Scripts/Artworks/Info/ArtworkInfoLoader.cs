@@ -1,7 +1,7 @@
 using System.IO;
 using UnityEngine;
 
-namespace Gretas.Artworks
+namespace Gretas.Artworks.Info
 {
     public class ArtworkInfoLoader : MonoBehaviour
     {

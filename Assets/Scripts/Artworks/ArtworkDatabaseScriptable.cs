@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Gretas.Artworks.Info;
 using UnityEngine;
 
 namespace Gretas.Artworks

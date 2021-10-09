@@ -1,4 +1,5 @@
 using Gretas.Artworks;
+using Gretas.User.Artwork.Info;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;

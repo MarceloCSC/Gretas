@@ -1,10 +1,10 @@
 using System.Text;
-using Gretas.Artworks;
+using Gretas.Artworks.Info;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Gretas.User
+namespace Gretas.User.Artwork.Info
 {
     public class UserArtworkInfoViewer : MonoBehaviour
     {

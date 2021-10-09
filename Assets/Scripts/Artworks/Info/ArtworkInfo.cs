@@ -1,4 +1,4 @@
-namespace Gretas.Artworks
+namespace Gretas.Artworks.Info
 {
     [System.Serializable]
     public class ArtworkInfo
