@@ -65,6 +65,14 @@ namespace Gretas.User
             }
         }
 
+        public void MoveToArtwork(Transform artwork)
+        {
+            _targetPosition = artwork.position - artwork.forward * 5.0f;
+            _targetPosition.y = transform.position.y;
+            //CANCEL IN CASE OF INPUT DURING MOVEMENT
+            _isMovingAfterClicking = true;
+        }
+
         private void MoveWithKeyboard()
         {
             var inputValues = _inputActions.User.Movement.ReadValue<Vector2>();
@@ -79,15 +87,7 @@ namespace Gretas.User
         {
             if (Physics.Raycast(_firstPersonCamera.ScreenPointToRay(Mouse.current.position.ReadValue()), out RaycastHit hit, 100.0f, _layerToClick))
             {
-                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Artwork"))
-                {
-                    _targetPosition = hit.transform.position - hit.transform.forward * 5.0f;
-                    _targetPosition.y = transform.position.y;
-                }
-                else
-                {
-                    _targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-                }
+                _targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
 
                 _isMovingAfterClicking = true;
             }

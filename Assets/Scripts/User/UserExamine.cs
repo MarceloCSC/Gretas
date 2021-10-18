@@ -101,29 +101,29 @@ namespace Gretas.User
         {
             if (Physics.Raycast(_mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()), out RaycastHit hit, 100.0f, _layerToClick))
             {
-                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Artwork"))
-                {
-                    float minDistance = CalculateDistance(hit.transform.GetComponent<MeshRenderer>().bounds);
-                    _position = hit.transform.position - hit.transform.forward * minDistance;
-                    _rotation = Quaternion.LookRotation(hit.transform.forward);
+                float minDistance = CalculateDistance(hit.transform.GetComponent<MeshRenderer>().bounds);
+                _position = hit.transform.position - hit.transform.forward * minDistance;
+                _rotation = Quaternion.LookRotation(hit.transform.forward);
 
-                    ChangeCameras();
+                ChangeCameras();
 
-                    // rotate main camera to face painting
-                    _movement.CanMove = false;
-                    _vision.CanLook = false;
-                    _isPositioning = true;
-                    _isExamining = true;
-                    _artworkInfoViewer.ActivatePanel(true);
-                    _artworkInfoViewer.LoadArtworkInfo(hit.transform.GetComponent<ArtworkFrame>().FrameId);
-                }
+                // rotate main camera to face painting
+                _movement.CanMove = false;
+                _movement.MoveToArtwork(hit.transform);
+                _vision.CanLook = false;
+                _isPositioning = true;
+                _isExamining = true;
+                _artworkInfoViewer.ActivatePanel(true);
+                _artworkInfoViewer.LoadArtworkInfo(hit.transform.GetComponent<IFrame>().FrameId);
             }
         }
 
         private void PositionCamera()
         {
-            _secondaryCamera.transform.position = Vector3.MoveTowards(_secondaryCamera.transform.position, _position, _speed * Time.deltaTime);
-            _secondaryCamera.transform.rotation = Quaternion.Slerp(_secondaryCamera.transform.rotation, _rotation, _speed * Time.deltaTime);
+            var position = Vector3.MoveTowards(_secondaryCamera.transform.position, _position, _speed * Time.deltaTime);
+            var rotation = Quaternion.Slerp(_secondaryCamera.transform.rotation, _rotation, _speed * Time.deltaTime);
+
+            _secondaryCamera.transform.SetPositionAndRotation(position, rotation);
 
             if (Vector3.Distance(_secondaryCamera.transform.position, _position) <= 0.1f &&
                 Quaternion.Angle(_secondaryCamera.transform.rotation, _rotation) <= 0.1f)
@@ -134,8 +134,10 @@ namespace Gretas.User
 
         private void ResettingCamera()
         {
-            _secondaryCamera.transform.position = Vector3.MoveTowards(_secondaryCamera.transform.position, _mainCamera.transform.position, _speed * 2 * Time.deltaTime);
-            _secondaryCamera.transform.rotation = Quaternion.Slerp(_secondaryCamera.transform.rotation, _mainCamera.transform.rotation, _speed * 2 * Time.deltaTime);
+            var position = Vector3.MoveTowards(_secondaryCamera.transform.position, _mainCamera.transform.position, _speed * 2 * Time.deltaTime);
+            var rotation = Quaternion.Slerp(_secondaryCamera.transform.rotation, _mainCamera.transform.rotation, _speed * 2 * Time.deltaTime);
+
+            _secondaryCamera.transform.SetPositionAndRotation(position, rotation);
 
             if (Vector3.Distance(_secondaryCamera.transform.position, _mainCamera.transform.position) <= 0.1f &&
                 Quaternion.Angle(_secondaryCamera.transform.rotation, _mainCamera.transform.rotation) <= 0.1f)
@@ -151,8 +153,7 @@ namespace Gretas.User
 
         private void ChangeCameras()
         {
-            _secondaryCamera.transform.position = _mainCamera.transform.position;
-            _secondaryCamera.transform.rotation = _mainCamera.transform.rotation;
+            _secondaryCamera.transform.SetPositionAndRotation(_mainCamera.transform.position, _mainCamera.transform.rotation);
             _mainCamera.enabled = false;
             _secondaryCamera.enabled = true;
         }

@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Gretas.Artworks
+namespace Gretas.Artworks.Image
 {
-    public class ArtworkFrame : MonoBehaviour
+    public class ImageFrame : MonoBehaviour, IFrame
     {
         [SerializeField] private string _frameId;
 
