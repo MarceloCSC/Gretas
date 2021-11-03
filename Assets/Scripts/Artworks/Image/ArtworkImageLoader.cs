@@ -8,13 +8,15 @@ namespace Gretas.Artworks.Image
     {
         [SerializeField] private ImageFrame[] _artworks;
 
+        private const string _path = "https://gretasgaleria.blob.core.windows.net/data/images";
+
         private void Start()
         {
             _artworks = FindObjectsOfType<ImageFrame>();
 
             foreach (var artwork in _artworks)
             {
-                string url = FindUrl(artwork.FrameId);
+                string url = GetUrl(artwork.FrameId, ImageQuality.Low);
                 StartCoroutine(GetTextureRequest(url, artwork));
             }
         }
@@ -46,20 +48,9 @@ namespace Gretas.Artworks.Image
             }
         }
 
-        private string FindUrl(string id)
+        private string GetUrl(string id, ImageQuality quality)
         {
-            return id switch
-            {
-                "0001" => "https://i2.wp.com/profissaobiotec.com.br/wp-content/uploads/2020/01/cat-4262034_1920.jpg?fit=1088%2C725&ssl=1",
-                "0002" => "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cute-photos-of-cats-cuddling-1593203046.jpg",
-                "0003" => "https://www.rd.com/wp-content/uploads/2021/04/GettyImages-145679137-scaled-e1619025176434.jpg",
-                "0004" => "https://www.metrovetchicago.com/sites/default/files/08-cat-cancer-4.jpeg",
-                "0005" => "https://image.cnbcfm.com/api/v1/image/105828578-1554223245858gettyimages-149052633.jpeg?v=1554223281",
-                "0006" => "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F34%2F2021%2F04%2F23%2Fclose-up-cats-eye-getty-0421-2000.jpg",
-                "0007" => "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F37%2F2021%2F03%2F15%2Fsiamese-cat-names.jpg",
-                "0008" => "https://www.youtube.com/watch?v=mRLfyc5Mi7U",
-                _ => string.Empty,
-            };
+            return $"{_path}/{quality.ToString().ToLower()}/{id}.png";
         }
 
         private float GetHeight(float width, float height)

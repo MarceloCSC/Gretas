@@ -38,8 +38,8 @@ namespace Gretas.Artworks.Video
         {
             return id switch
             {
-                "vid0001" => "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
-                "vid0002" => "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+                "vid0001" => "https://gretasgaleria.blob.core.windows.net/data/videos/vid01.mp4",
+                "vid0002" => "https://gretasgaleria.blob.core.windows.net/data/videos/vid02.mp4",
                 _ => string.Empty,
             };
         }
