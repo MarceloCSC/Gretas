@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Gretas.Artworks.Video
 {
-    public class VideoAudioManager : MonoBehaviour
+    public class VideoPlaybackManager : MonoBehaviour
     {
         private AudioSource _audioSource;
 

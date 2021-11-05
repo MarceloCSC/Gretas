@@ -1,7 +1,7 @@
 namespace Gretas.Artworks.Info
 {
     [System.Serializable]
-    public class ArtworksInfo
+    public class InfoDatabase
     {
         public ArtworkInfo[] data;
     }

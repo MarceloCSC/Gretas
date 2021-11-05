@@ -3,26 +3,26 @@ using UnityEngine.Video;
 
 namespace Gretas.Artworks.Video
 {
-    public class ArtworkVideoLoader : MonoBehaviour
+    public class VideoLoader : MonoBehaviour
     {
-        [SerializeField] private VideoFrame[] _videos;
+        [SerializeField] private VideoFrame[] _videoFrames;
 
         private void Start()
         {
-            _videos = FindObjectsOfType<VideoFrame>();
+            _videoFrames = FindObjectsOfType<VideoFrame>();
 
-            foreach (var video in _videos)
+            foreach (var videoFrame in _videoFrames)
             {
-                LoadVideo(video);
+                LoadVideo(videoFrame);
             }
         }
 
-        private void LoadVideo(VideoFrame video)
+        private void LoadVideo(VideoFrame videoFrame)
         {
             var texture = new RenderTexture(1280, 720, 24);
-            var videoplayer = video.GetComponent<VideoPlayer>();
+            var videoplayer = videoFrame.GetComponent<VideoPlayer>();
 
-            videoplayer.url = FindUrl(video.FrameId);
+            videoplayer.url = FindUrl(videoFrame.FrameId);
             videoplayer.targetTexture = texture;
 
             var material = new Material(Shader.Find("Unlit/Texture"))
@@ -30,13 +30,13 @@ namespace Gretas.Artworks.Video
                 mainTexture = texture
             };
 
-            video.GetComponent<AudioSource>().mute = true;
-            video.GetComponent<MeshRenderer>().material = material;
+            videoFrame.GetComponent<AudioSource>().mute = true;
+            videoFrame.GetComponent<MeshRenderer>().material = material;
         }
 
-        private string FindUrl(string id)
+        private string FindUrl(string frameId)
         {
-            return id switch
+            return frameId switch
             {
                 "vid0001" => "https://gretasgaleria.blob.core.windows.net/data/videos/vid01.mp4",
                 "vid0002" => "https://gretasgaleria.blob.core.windows.net/data/videos/vid02.mp4",

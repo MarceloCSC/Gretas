@@ -24,7 +24,7 @@ namespace Gretas.User
         private UserInputActions _inputActions;
         private UserMovement _movement;
         private UserVision _vision;
-        private UserArtworkInfoViewer _artworkInfoViewer;
+        private UserInfoViewer _infoViewer;
 
         private void Awake()
         {
@@ -32,7 +32,7 @@ namespace Gretas.User
             _secondaryCamera.enabled = false;
             _movement = GetComponent<UserMovement>();
             _vision = GetComponent<UserVision>();
-            _artworkInfoViewer = GetComponent<UserArtworkInfoViewer>();
+            _infoViewer = GetComponent<UserInfoViewer>();
         }
 
         private void OnEnable()
@@ -94,7 +94,7 @@ namespace Gretas.User
         {
             _isPositioning = false;
             _isResetting = true;
-            _artworkInfoViewer.ActivatePanel(false);
+            _infoViewer.ActivatePanel(false);
         }
 
         private void ExamineArtwork()
@@ -113,8 +113,8 @@ namespace Gretas.User
                 _vision.CanLook = false;
                 _isPositioning = true;
                 _isExamining = true;
-                _artworkInfoViewer.ActivatePanel(true);
-                _artworkInfoViewer.LoadArtworkInfo(hit.transform.GetComponent<IFrame>().FrameId);
+                _infoViewer.ActivatePanel(true);
+                _infoViewer.LoadArtworkInfo(hit.transform.GetComponent<IFrame>().FrameId);
             }
         }
 

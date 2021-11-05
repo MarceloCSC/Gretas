@@ -4,9 +4,9 @@ using UnityEngine.Networking;
 
 namespace Gretas.Artworks.Info
 {
-    public class ArtworkInfoLoader : MonoBehaviour
+    public class InfoLoader : MonoBehaviour
     {
-        [SerializeField] private ArtworksInfo _artworksInfo;
+        [SerializeField] private InfoDatabase _infoDatabase;
 
         private const string _path = "https://gretasgaleria.blob.core.windows.net/data/artworksInfo.json";
 
@@ -17,7 +17,7 @@ namespace Gretas.Artworks.Info
 
         public ArtworkInfo GetArtworkInfo(string frameId)
         {
-            foreach (var artworkInfo in _artworksInfo.data)
+            foreach (var artworkInfo in _infoDatabase.data)
             {
                 if (artworkInfo.frameId == frameId)
                 {
@@ -44,7 +44,7 @@ namespace Gretas.Artworks.Info
             {
                 if (webRequest.isDone)
                 {
-                    _artworksInfo = JsonUtility.FromJson<ArtworksInfo>(webRequest.downloadHandler.text);
+                    _infoDatabase = JsonUtility.FromJson<InfoDatabase>(webRequest.downloadHandler.text);
                 }
             }
         }

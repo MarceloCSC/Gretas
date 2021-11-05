@@ -6,25 +6,25 @@ using UnityEngine.UI;
 
 namespace Gretas.User.Artwork.Info
 {
-    public class UserArtworkInfoViewer : MonoBehaviour
+    public class UserInfoViewer : MonoBehaviour
     {
-        [SerializeField] private GameObject _artworkInfoPanel;
+        [SerializeField] private GameObject _infoPanel;
         [SerializeField] private GameObject _expandButton;
 
         private ArtworkInfo _currentArtworkInfo;
-        private ArtworkInfoLoader _artworkInfoLoader;
+        private InfoLoader _infoLoader;
 
         private void Awake()
         {
-            _artworkInfoPanel.SetActive(false);
+            _infoPanel.SetActive(false);
             _expandButton.SetActive(false);
-            _artworkInfoLoader = FindObjectOfType<ArtworkInfoLoader>();
+            _infoLoader = FindObjectOfType<InfoLoader>();
         }
 
         private void OnEnable()
         {
             _expandButton.GetComponent<Button>().onClick.AddListener(ExpandPanel);
-            _artworkInfoPanel.GetComponentInChildren<Button>().onClick.AddListener(ClosePanel);
+            _infoPanel.GetComponentInChildren<Button>().onClick.AddListener(ClosePanel);
         }
 
         private void OnDisable()
@@ -34,15 +34,15 @@ namespace Gretas.User.Artwork.Info
                 _expandButton.GetComponent<Button>().onClick.RemoveListener(ExpandPanel);
             }
 
-            if (_artworkInfoPanel)
+            if (_infoPanel)
             {
-                _artworkInfoPanel.GetComponentInChildren<Button>().onClick.RemoveListener(ClosePanel);
+                _infoPanel.GetComponentInChildren<Button>().onClick.RemoveListener(ClosePanel);
             }
         }
 
         public void LoadArtworkInfo(string frameId)
         {
-            _currentArtworkInfo = _artworkInfoLoader.GetArtworkInfo(frameId);
+            _currentArtworkInfo = _infoLoader.GetArtworkInfo(frameId);
 
             if (_currentArtworkInfo != null)
             {
@@ -83,7 +83,7 @@ namespace Gretas.User.Artwork.Info
                     stringBuilder.AppendLine($"Materiais: {_currentArtworkInfo.materials}");
                 }
 
-                _artworkInfoPanel.GetComponentInChildren<TextMeshProUGUI>().text = stringBuilder.ToString();
+                _infoPanel.GetComponentInChildren<TextMeshProUGUI>().text = stringBuilder.ToString();
             }
         }
 
@@ -93,19 +93,19 @@ namespace Gretas.User.Artwork.Info
 
             if (!isActive)
             {
-                _artworkInfoPanel.SetActive(isActive);
+                _infoPanel.SetActive(isActive);
             }
         }
 
         public void ExpandPanel()
         {
-            _artworkInfoPanel.SetActive(true);
+            _infoPanel.SetActive(true);
             _expandButton.SetActive(false);
         }
 
         public void ClosePanel()
         {
-            _artworkInfoPanel.SetActive(false);
+            _infoPanel.SetActive(false);
             _expandButton.SetActive(true);
         }
     }
