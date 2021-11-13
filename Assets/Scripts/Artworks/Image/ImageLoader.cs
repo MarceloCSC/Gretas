@@ -37,7 +37,12 @@ namespace Gretas.Artworks.Image
             {
                 if (webRequest.isDone)
                 {
-                    var texture = DownloadHandlerTexture.GetContent(webRequest);
+                    var downloadedTexture = DownloadHandlerTexture.GetContent(webRequest);
+
+                    var texture = new Texture2D(downloadedTexture.width, downloadedTexture.height);
+
+                    texture.SetPixels(downloadedTexture.GetPixels());
+                    texture.Apply();
 
                     var material = new Material(Shader.Find("Unlit/Texture"))
                     {
@@ -45,7 +50,7 @@ namespace Gretas.Artworks.Image
                     };
 
                     imageFrame.GetComponent<MeshRenderer>().material = material;
-                    imageFrame.transform.localScale = new Vector3(8.0f, GetHeight(texture.width, texture.height), 1);
+                    //imageFrame.transform.localScale = new Vector3(8.0f, GetHeight(texture.width, texture.height), 1);
                 }
             }
         }
