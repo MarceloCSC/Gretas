@@ -15,11 +15,11 @@ namespace Gretas.Artworks.Info
             StartCoroutine(GetInfoRequest());
         }
 
-        public ArtworkInfo GetArtworkInfo(string frameId)
+        public ArtworkInfo GetArtworkInfo(string artworkId)
         {
             foreach (var artworkInfo in _infoDatabase.data)
             {
-                if (artworkInfo.frameId == frameId)
+                if (artworkInfo.artworkId == artworkId)
                 {
                     return artworkInfo;
                 }

@@ -40,9 +40,9 @@ namespace Gretas.User.Artwork.Info
             }
         }
 
-        public void LoadArtworkInfo(string frameId)
+        public void LoadArtworkInfo(string artworkId)
         {
-            _currentArtworkInfo = _infoLoader.GetArtworkInfo(frameId);
+            _currentArtworkInfo = _infoLoader.GetArtworkInfo(artworkId);
 
             if (_currentArtworkInfo != null)
             {

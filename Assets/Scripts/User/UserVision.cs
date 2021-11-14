@@ -6,7 +6,7 @@ namespace Gretas.User
     public class UserVision : MonoBehaviour
     {
         [SerializeField] private Transform _cameraTransform;
-        [SerializeField] private float _mouseSensitivity = 150.0f;
+        [SerializeField] private float _mouseSensitivity = 15.0f;
         [SerializeField] private float _maxVerticalAngle = 90.0f;
         [SerializeField] private float _minVerticalAngle = -75.0f;
 

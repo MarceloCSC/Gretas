@@ -114,7 +114,7 @@ namespace Gretas.User
                 _isPositioning = true;
                 _isExamining = true;
                 _infoViewer.ActivatePanel(true);
-                _infoViewer.LoadArtworkInfo(hit.transform.GetComponent<IFrame>().FrameId);
+                _infoViewer.LoadArtworkInfo(hit.transform.GetComponent<IDisplay>().Id);
             }
         }
 
