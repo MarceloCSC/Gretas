@@ -33,7 +33,7 @@ namespace Gretas.User
 
             _inputActions.User.Interact.canceled += _ =>
             {
-                if (_canMove && _.interaction is PressInteraction && !EventSystem.current.IsPointerOverGameObject())
+                if (_canMove && _.interaction is PressInteraction && !EventSystem.current.currentSelectedGameObject)
                 {
                     ClickToMove();
                 }
@@ -46,7 +46,7 @@ namespace Gretas.User
 
             _inputActions.User.Interact.canceled -= _ =>
             {
-                if (_canMove && _.interaction is PressInteraction && !EventSystem.current.IsPointerOverGameObject())
+                if (_canMove && _.interaction is PressInteraction && !EventSystem.current.currentSelectedGameObject)
                 {
                     ClickToMove();
                 }
@@ -79,8 +79,8 @@ namespace Gretas.User
 
             Vector3 forwardMovement = transform.forward * inputValues.y;
             Vector3 rightMovement = transform.right * inputValues.x;
-
-            _characterController.SimpleMove(Vector3.ClampMagnitude(forwardMovement + rightMovement, 1.0f) * _movementSpeed);
+                                                                                                            //Change this later 
+            _characterController.SimpleMove(Vector3.ClampMagnitude(forwardMovement + rightMovement, 1.0f) + (Vector3.down * 10.0f) * _movementSpeed);
         }
 
         private void ClickToMove()

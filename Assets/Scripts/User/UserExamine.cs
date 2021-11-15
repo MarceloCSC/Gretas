@@ -41,7 +41,7 @@ namespace Gretas.User
 
             _inputActions.User.Interact.canceled += _ =>
             {
-                if (!_isExamining && _.interaction is PressInteraction && !EventSystem.current.IsPointerOverGameObject())
+                if (!_isExamining && _.interaction is PressInteraction && !EventSystem.current.currentSelectedGameObject)
                 {
                     ExamineArtwork();
                 }
@@ -62,7 +62,7 @@ namespace Gretas.User
 
             _inputActions.User.Interact.canceled -= _ =>
             {
-                if (!_isExamining && _.interaction is PressInteraction && !EventSystem.current.IsPointerOverGameObject())
+                if (!_isExamining && _.interaction is PressInteraction && !EventSystem.current.currentSelectedGameObject)
                 {
                     ExamineArtwork();
                 }
