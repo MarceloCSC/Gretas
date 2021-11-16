@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
 namespace Gretas.User
@@ -28,44 +30,25 @@ namespace Gretas.User
             Cursor.visible = true;
         }
 
-        private void OnEnable()
+        private IEnumerator Start()
         {
-            _inputActions.User.Enable();
+            while (InputSystem.GetDevice<Mouse>() == null)
+            {
+                yield return null;
+            }
 
-            _inputActions.User.Interact.performed += _ =>
-            {
-                if (_canLook && _.interaction is HoldInteraction)
-                {
-                    _isLooking = true;
-                }
-            };
-            _inputActions.User.Interact.canceled += _ =>
-            {
-                if (_canLook && _.interaction is HoldInteraction)
-                {
-                    _isLooking = false;
-                }
-            };
+            Debug.Log("Input for UserVision successfully initialized");
+
+            _inputActions.User.Enable();
+            _inputActions.User.Interact.performed += EnableLooking;
+            _inputActions.User.Interact.canceled += DisableLooking;
         }
 
         private void OnDisable()
         {
             _inputActions.User.Disable();
-
-            _inputActions.User.Interact.performed -= _ =>
-            {
-                if (_canLook && _.interaction is HoldInteraction)
-                {
-                    _isLooking = true;
-                }
-            };
-            _inputActions.User.Interact.canceled -= _ =>
-            {
-                if (_canLook && _.interaction is HoldInteraction)
-                {
-                    _isLooking = false;
-                }
-            };
+            _inputActions.User.Interact.performed -= EnableLooking;
+            _inputActions.User.Interact.canceled -= DisableLooking;
         }
 
         private void Update()
@@ -111,6 +94,22 @@ namespace Gretas.User
             eulerRotation.z = zValue == 0 ? _cameraTransform.eulerAngles.z : zValue;
 
             _cameraTransform.eulerAngles = eulerRotation;
+        }
+
+        private void EnableLooking(InputAction.CallbackContext context)
+        {
+            if (_canLook && context.interaction is HoldInteraction)
+            {
+                _isLooking = true;
+            }
+        }
+
+        private void DisableLooking(InputAction.CallbackContext context)
+        {
+            if (_canLook && context.interaction is HoldInteraction)
+            {
+                _isLooking = false;
+            }
         }
     }
 }

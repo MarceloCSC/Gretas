@@ -1,3 +1,4 @@
+using System.Collections;
 using Gretas.Artworks;
 using Gretas.User.Artwork.Info;
 using UnityEngine;
@@ -35,46 +36,25 @@ namespace Gretas.User
             _infoViewer = GetComponent<UserInfoViewer>();
         }
 
-        private void OnEnable()
+        private IEnumerator Start()
         {
+            while (InputSystem.GetDevice<Mouse>() == null)
+            {
+                yield return null;
+            }
+
+            Debug.Log("Input for UserExamine successfully initialized");
+
             _inputActions.User.Enable();
-
-            _inputActions.User.Interact.canceled += _ =>
-            {
-                if (!_isExamining && _.interaction is PressInteraction && !EventSystem.current.currentSelectedGameObject)
-                {
-                    ExamineArtwork();
-                }
-            };
-
-            _inputActions.User.Movement.performed += _ =>
-            {
-                if (_isExamining)
-                {
-                    ExitVisualization();
-                }
-            };
+            _inputActions.User.Interact.canceled += ExamineArtwork;
+            _inputActions.User.Movement.performed += ExitVisualization;
         }
 
         private void OnDisable()
         {
             _inputActions.User.Disable();
-
-            _inputActions.User.Interact.canceled -= _ =>
-            {
-                if (!_isExamining && _.interaction is PressInteraction && !EventSystem.current.currentSelectedGameObject)
-                {
-                    ExamineArtwork();
-                }
-            };
-
-            _inputActions.User.Movement.performed -= _ =>
-            {
-                if (_isExamining)
-                {
-                    ExitVisualization();
-                }
-            };
+            _inputActions.User.Interact.canceled -= ExamineArtwork;
+            _inputActions.User.Movement.performed -= ExitVisualization;
         }
 
         private void LateUpdate()
@@ -90,31 +70,37 @@ namespace Gretas.User
             }
         }
 
-        public void ExitVisualization()
+        public void ExitVisualization(InputAction.CallbackContext context)
         {
-            _isPositioning = false;
-            _isResetting = true;
-            _infoViewer.ActivatePanel(false);
+            if (_isExamining)
+            {
+                _isPositioning = false;
+                _isResetting = true;
+                _infoViewer.ActivatePanel(false);
+            }
         }
 
-        private void ExamineArtwork()
+        private void ExamineArtwork(InputAction.CallbackContext context)
         {
-            if (Physics.Raycast(_mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()), out RaycastHit hit, 100.0f, _layerToClick))
+            if (!_isExamining && context.interaction is PressInteraction && !EventSystem.current.currentSelectedGameObject)
             {
-                float minDistance = CalculateDistance(hit.transform.GetComponent<MeshRenderer>().bounds);
-                _position = hit.transform.position - hit.transform.forward * minDistance;
-                _rotation = Quaternion.LookRotation(hit.transform.forward);
+                if (Physics.Raycast(_mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()), out RaycastHit hit, 100.0f, _layerToClick))
+                {
+                    float minDistance = CalculateDistance(hit.transform.GetComponent<MeshRenderer>().bounds);
+                    _position = hit.transform.position - hit.transform.forward * minDistance;
+                    _rotation = Quaternion.LookRotation(hit.transform.forward);
 
-                ChangeCameras();
+                    ChangeCameras();
 
-                // rotate main camera to face painting
-                _movement.CanMove = false;
-                _movement.MoveToArtwork(hit.transform);
-                _vision.CanLook = false;
-                _isPositioning = true;
-                _isExamining = true;
-                _infoViewer.ActivatePanel(true);
-                _infoViewer.LoadArtworkInfo(hit.transform.GetComponent<IDisplay>().Id);
+                    // rotate main camera to face painting
+                    _movement.CanMove = false;
+                    _movement.MoveToArtwork(hit.transform);
+                    _vision.CanLook = false;
+                    _isPositioning = true;
+                    _isExamining = true;
+                    _infoViewer.ActivatePanel(true);
+                    _infoViewer.LoadArtworkInfo(hit.transform.GetComponent<IDisplay>().Id);
+                }
             }
         }
 

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -27,30 +28,23 @@ namespace Gretas.User
             _canMove = true;
         }
 
-        private void OnEnable()
+        private IEnumerator Start()
         {
-            _inputActions.User.Enable();
-
-            _inputActions.User.Interact.canceled += _ =>
+            while (InputSystem.GetDevice<Mouse>() == null)
             {
-                if (_canMove && _.interaction is PressInteraction && !EventSystem.current.currentSelectedGameObject)
-                {
-                    ClickToMove();
-                }
-            };
+                yield return null;
+            }
+
+            Debug.Log("Input for UserMovement successfully initialized");
+
+            _inputActions.User.Enable();
+            _inputActions.User.Interact.canceled += ClickToMove;
         }
 
         private void OnDisable()
         {
             _inputActions.User.Disable();
-
-            _inputActions.User.Interact.canceled -= _ =>
-            {
-                if (_canMove && _.interaction is PressInteraction && !EventSystem.current.currentSelectedGameObject)
-                {
-                    ClickToMove();
-                }
-            };
+            _inputActions.User.Interact.canceled -= ClickToMove;
         }
 
         private void Update()
@@ -79,17 +73,20 @@ namespace Gretas.User
 
             Vector3 forwardMovement = transform.forward * inputValues.y;
             Vector3 rightMovement = transform.right * inputValues.x;
-                                                                                                            //Change this later 
-            _characterController.SimpleMove(Vector3.ClampMagnitude(forwardMovement + rightMovement, 1.0f) + (Vector3.down * 10.0f) * _movementSpeed);
+
+            _characterController.SimpleMove(Vector3.ClampMagnitude(forwardMovement + rightMovement, 1.0f) * _movementSpeed);
         }
 
-        private void ClickToMove()
+        private void ClickToMove(InputAction.CallbackContext context)
         {
-            if (Physics.Raycast(_firstPersonCamera.ScreenPointToRay(Mouse.current.position.ReadValue()), out RaycastHit hit, 100.0f, _layerToClick))
+            if (_canMove && context.interaction is PressInteraction && !EventSystem.current.currentSelectedGameObject)
             {
-                _targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+                if (Physics.Raycast(_firstPersonCamera.ScreenPointToRay(Mouse.current.position.ReadValue()), out RaycastHit hit, 100.0f, _layerToClick))
+                {
+                    _targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
 
-                _isMovingAfterClicking = true;
+                    _isMovingAfterClicking = true;
+                }
             }
         }
 
