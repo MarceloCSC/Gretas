@@ -565,7 +565,7 @@ LightingSettings:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  serializedVersion: 4
+  serializedVersion: 3
   m_GIWorkflowMode: 1
   m_EnableBakedLightmaps: 1
   m_EnableRealtimeLightmaps: 0
@@ -578,7 +578,7 @@ LightingSettings:
   m_LightmapMaxSize: 1024
   m_BakeResolution: 40
   m_Padding: 2
-  m_LightmapCompression: 3
+  m_TextureCompression: 1
   m_AO: 0
   m_AOMaxDistance: 1
   m_CompAOExponent: 1
@@ -619,7 +619,6 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaDirect: 0.5
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
-  m_PVRTiledBaking: 0
 --- !u!1001 &470007167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -796,7 +795,6 @@ Transform:
   m_LocalRotation: {x: 0.4698463, y: -0.4698463, z: 0.32898986, w: 0.6710102}
   m_LocalPosition: {x: 0, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -813,14 +811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 1
   m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1001 &738256637
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -961,7 +952,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -983,7 +973,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -1005,7 +995,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Shape:
-    rid: 4810253772481101830
+    id: 0
   m_Size: {x: 63.93, y: 0, z: 52.36}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_PivotLocation: 0
@@ -1015,13 +1005,9 @@ MonoBehaviour:
     m_Center: {x: 30.2775, y: 0, z: 0.109996796}
     m_Extent: {x: 0.5, y: 0, z: 0.5}
   references:
-    version: 2
-    RefIds:
-    - rid: 4810253772481101830
-      type: {class: Plane, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data:
-        m_HeightSegments: 1
-        m_WidthSegments: 1
+    version: 1
+    00000000:
+      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
 --- !u!114 &741157689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1192,7 +1178,6 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.6100006, y: 11.64, z: 13.333334}
   m_LocalScale: {x: 0.5, y: 1, z: 0.6666667}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1468489992}
   m_RootOrder: 1
@@ -1203,7 +1188,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh36064
+  m_Name: pb_Mesh32982
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1258,9 +1243,9 @@ Mesh:
       format: 0
       dimension: 2
     - stream: 0
-      offset: 0
+      offset: 48
       format: 0
-      dimension: 0
+      dimension: 2
     - stream: 0
       offset: 0
       format: 0
@@ -1293,8 +1278,8 @@ Mesh:
       offset: 0
       format: 0
       dimension: 0
-    m_DataSize: 1152
-    _typelessdata: fec215c200f4a9bc3601a2bf00000000000000000000803f000080bf0000000000000000000080bffec2154200f4a9bce440b2c000f4a9bc3601a2bf00000000000000000000803f000080bf0000000000000000000080bfe440b24000f4a9bcfec215c28dacaf413601a2bf00000000000000000000803f000080bf0000000000000000000080bffec215428dacaf41e440b2c08dacaf413601a2bf00000000000000000000803f000080bf0000000000000000000080bfe440b2408dacaf41e440b2c000f4a9bc3601a2bf0000803f000000000000000000000000000000000000803f000080bf3601a2bf00f4a9bce440b2c000f4a9bcc74048c00000803f000000000000000000000000000000000000803f000080bfc74048c000f4a9bce440b2c08dacaf413601a2bf0000803f000000000000000000000000000000000000803f000080bf3601a2bf8dacaf41e440b2c08dacaf41c74048c00000803f000000000000000000000000000000000000803f000080bfc74048c08dacaf41e440b2c000f4a9bcc74048c00000000000000000000080bf0000803f0000000000000000000080bfe440b2c000f4a9bcfec215c200f4a9bcc74048c00000000000000000000080bf0000803f0000000000000000000080bffec215c200f4a9bce440b2c08dacaf41c74048c00000000000000000000080bf0000803f0000000000000000000080bfe440b2c08dacaf41fec215c28dacaf41c74048c00000000000000000000080bf0000803f0000000000000000000080bffec215c28dacaf41fec215c200f4a9bcc74048c0000080bf00000000000000000000000000000000000080bf000080bfc740484000f4a9bcfec215c200f4a9bc3601a2bf000080bf00000000000000000000000000000000000080bf000080bf3601a23f00f4a9bcfec215c28dacaf41c74048c0000080bf00000000000000000000000000000000000080bf000080bfc74048408dacaf41fec215c28dacaf413601a2bf000080bf00000000000000000000000000000000000080bf000080bf3601a23f8dacaf41fec215c28dacaf413601a2bf000000000000803f000000000000803f0000000000000000000080bffec215c23601a2bfe440b2c08dacaf413601a2bf000000000000803f000000000000803f0000000000000000000080bfe440b2c03601a2bffec215c28dacaf41c74048c0000000000000803f000000000000803f0000000000000000000080bffec215c2c74048c0e440b2c08dacaf41c74048c0000000000000803f000000000000803f0000000000000000000080bfe440b2c0c74048c0fec215c200f4a9bcc74048c000000000000080bf00000000000080bf0000000000000000000080bffec21542c74048c0e440b2c000f4a9bcc74048c000000000000080bf00000000000080bf0000000000000000000080bfe440b240c74048c0fec215c200f4a9bc3601a2bf00000000000080bf00000000000080bf0000000000000000000080bffec215423601a2bfe440b2c000f4a9bc3601a2bf00000000000080bf00000000000080bf0000000000000000000080bfe440b2403601a2bf
+    m_DataSize: 1344
+    _typelessdata: fec215c200f4a9bc3601a2bf00000000000000000000803f000080bf0000000000000000000080bffec2154200f4a9bc33d7a33c960d003ee440b2c000f4a9bc3601a2bf00000000000000000000803f000080bf0000000000000000000080bfe440b24000f4a9bc398a133f960d003efec215c28dacaf413601a2bf00000000000000000000803f000080bf0000000000000000000080bffec215428dacaf410bd7a33cab3c023fe440b2c08dacaf413601a2bf00000000000000000000803f000080bf0000000000000000000080bfe440b2408dacaf41388a133fab3c023fe440b2c000f4a9bc3601a2bf0000803f000000000000000000000000000000000000803f000080bf3601a2bf00f4a9bcf5a8183f6925d73de440b2c000f4a9bcc74048c00000803f000000000000000000000000000000000000803f000080bfc74048c000f4a9bcf5a8183f7788943de440b2c08dacaf413601a2bf0000803f000000000000000000000000000000000000803f000080bf3601a2bf8dacaf413de27a3f6925d73de440b2c08dacaf41c74048c00000803f000000000000000000000000000000000000803f000080bfc74048c08dacaf413ce27a3f7888943de440b2c000f4a9bcc74048c00000000000000000000080bf0000803f0000000000000000000080bfe440b2c000f4a9bc33d7a33c635b073ffec215c200f4a9bcc74048c00000000000000000000080bf0000803f0000000000000000000080bffec215c200f4a9bc398a133f635b073fe440b2c08dacaf41c74048c00000000000000000000080bf0000803f0000000000000000000080bfe440b2c08dacaf410bd7a33ca994693ffec215c28dacaf41c74048c00000000000000000000080bf0000803f0000000000000000000080bffec215c28dacaf41388a133fa994693ffec215c200f4a9bcc74048c0000080bf00000000000000000000000000000000000080bf000080bfc740484000f4a9bc3ce27a3f0bd7a33cfec215c200f4a9bc3601a2bf000080bf00000000000000000000000000000000000080bf000080bf3601a23f00f4a9bc3de27a3f6925573dfec215c28dacaf41c74048c0000080bf00000000000000000000000000000000000080bf000080bfc74048408dacaf41f5a8183f0bd7a33cfec215c28dacaf413601a2bf000080bf00000000000000000000000000000000000080bf000080bf3601a23f8dacaf41f5a8183f6925573dfec215c28dacaf413601a2bf000000000000803f000000000000803f0000000000000000000080bffec215c23601a2bf3d8a133f6a25573de440b2c08dacaf413601a2bf000000000000803f000000000000803f0000000000000000000080bfe440b2c03601a2bf6bd7a33c6a25573dfec215c28dacaf41c74048c0000000000000803f000000000000803f0000000000000000000080bffec215c2c74048c03a8a133f0bd7a33ce440b2c08dacaf41c74048c0000000000000803f000000000000803f0000000000000000000080bfe440b2c0c74048c00bd7a33c0bd7a33cfec215c200f4a9bcc74048c000000000000080bf00000000000080bf0000000000000000000080bffec21542c74048c00bd7a33c7788943de440b2c000f4a9bcc74048c000000000000080bf00000000000080bf0000000000000000000080bfe440b240c74048c03a8a133f7788943dfec215c200f4a9bc3601a2bf00000000000080bf00000000000080bf0000000000000000000080bffec215423601a2bf6bd7a33c6a25d73de440b2c000f4a9bc3601a2bf00000000000080bf00000000000080bf0000000000000000000080bfe440b2403601a2bf3d8a133f6a25d73d
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -1367,7 +1352,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh36038
+  m_Name: pb_Mesh32956
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1627,7 +1612,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27830
+  m_Name: pb_Mesh32900
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2451,7 +2436,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2496,7 +2480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Shape:
-    rid: 0
+    id: 0
   m_Size: {x: 35, y: 0, z: 35}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_PivotLocation: 1
@@ -2506,13 +2490,9 @@ MonoBehaviour:
     m_Center: {x: 18.164482, y: 0.0000019073486, z: 13.425142}
     m_Extent: {x: 0.5, y: 0, z: 0.5}
   references:
-    version: 2
-    RefIds:
-    - rid: 0
-      type: {class: Plane, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data:
-        m_HeightSegments: 1
-        m_WidthSegments: 1
+    version: 1
+    00000000:
+      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
 --- !u!114 &1468489991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3304,7 +3284,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 1, z: 1.5}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1631387379}
   - {fileID: 741157690}
@@ -3623,7 +3602,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3667,7 +3645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Shape:
-    rid: 4810253640444149789
+    id: 0
   m_Size: {x: -31.869999, y: 21.98, z: -1.8632917}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_PivotLocation: 1
@@ -3677,9 +3655,8 @@ MonoBehaviour:
     m_Center: {x: -21.50542, y: 10.969254, z: -2.1973078}
     m_Extent: {x: 15.935, y: 10.99, z: 0.9316459}
   references:
-    version: 2
-    RefIds:
-    - rid: 4810253640444149789
+    version: 1
+    00000000:
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
 --- !u!114 &1631387378
 MonoBehaviour:
@@ -3908,7 +3885,6 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 27.745104, y: 0, z: 14.920001}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.6}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1468489992}
   m_RootOrder: 0
@@ -4111,7 +4087,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1118351049}
   - {fileID: 1601421473}
