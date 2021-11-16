@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -28,15 +27,8 @@ namespace Gretas.User
             _canMove = true;
         }
 
-        private IEnumerator Start()
+        private void OnEnable()
         {
-            while (InputSystem.GetDevice<Mouse>() == null)
-            {
-                yield return null;
-            }
-
-            Debug.Log("Input for UserMovement successfully initialized");
-
             _inputActions.User.Enable();
             _inputActions.User.Interact.canceled += ClickToMove;
         }

@@ -1,4 +1,3 @@
-using System.Collections;
 using Gretas.Artworks;
 using Gretas.User.Artwork.Info;
 using UnityEngine;
@@ -36,15 +35,8 @@ namespace Gretas.User
             _infoViewer = GetComponent<UserInfoViewer>();
         }
 
-        private IEnumerator Start()
+        private void OnEnable()
         {
-            while (InputSystem.GetDevice<Mouse>() == null)
-            {
-                yield return null;
-            }
-
-            Debug.Log("Input for UserExamine successfully initialized");
-
             _inputActions.User.Enable();
             _inputActions.User.Interact.canceled += ExamineArtwork;
             _inputActions.User.Movement.performed += ExitVisualization;

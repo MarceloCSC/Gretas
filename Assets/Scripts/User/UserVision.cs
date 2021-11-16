@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
@@ -30,15 +29,8 @@ namespace Gretas.User
             Cursor.visible = true;
         }
 
-        private IEnumerator Start()
+        private void OnEnable()
         {
-            while (InputSystem.GetDevice<Mouse>() == null)
-            {
-                yield return null;
-            }
-
-            Debug.Log("Input for UserVision successfully initialized");
-
             _inputActions.User.Enable();
             _inputActions.User.Interact.performed += EnableLooking;
             _inputActions.User.Interact.canceled += DisableLooking;
