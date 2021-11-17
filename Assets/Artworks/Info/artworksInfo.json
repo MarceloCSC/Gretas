@@ -1,0 +1,81 @@
+{
+  "data": [
+    {
+      "artworkId": "Araribóia 2",
+      "frameId": "A_001",
+      "artist": "Marcelo Camargo",
+      "title": "Gato Fofo",
+      "location": "São Paulo",
+      "date": "01/01/99",
+      "currentLocation": "",
+      "dimensions": "20x10",
+      "materials": "papel"
+    },
+    {
+      "artworkId": "fsdfsf",
+      "frameId": "A_002",
+      "artist": "Zé da Silva",
+      "title": "Teste 2",
+      "location": "Rio de Janeiro",
+      "date": "01/01/21",
+      "currentLocation": "Paris",
+      "dimensions": "30x50",
+      "materials": "tinta guache"
+    },
+    {
+      "artworkId": "adawds",
+      "frameId": "A_003",
+      "artist": "Desconhecido",
+      "title": "Sem título",
+      "location": "",
+      "date": "",
+      "currentLocation": "",
+      "dimensions": "999x999",
+      "materials": "caneta bic"
+    },
+    {
+      "artworkId": "asdaed",
+      "frameId": "A_004",
+      "artist": "Picasso",
+      "title": "Gato",
+      "location": "Rio de Janeiro",
+      "date": "01/01/21",
+      "currentLocation": "",
+      "dimensions": "",
+      "materials": ""
+    },
+    {
+      "artworkId": "fsffwa",
+      "frameId": "A_005",
+      "artist": "Monet",
+      "title": "Outro Teste",
+      "location": "São Paulo",
+      "date": "30/05/04",
+      "currentLocation": "New York",
+      "dimensions": "400x250",
+      "materials": "tesoura e cartolina"
+    },
+    {
+      "artworkId": "bbsded",
+      "frameId": "A_006",
+      "artist": "Fulano de Tal",
+      "title": "Gato",
+      "location": "São Paulo",
+      "date": "01/01/88",
+      "currentLocation": "",
+      "dimensions": "200x100",
+      "materials": "papel"
+    },
+    {
+      "artworkId": "awfega",
+      "frameId": "A_007",
+      "artist": "Anônimo",
+      "title": "Teste nº7",
+      "location": "Rio de Janeiro",
+      "date": "2009",
+      "currentLocation": "",
+      "dimensions": "234x567",
+      "materials": ""
+    }
+  ]
+}

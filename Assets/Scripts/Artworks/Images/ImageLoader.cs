@@ -12,7 +12,10 @@ namespace Gretas.Artworks.Images
 
         private void Start()
         {
-            _images = FindObjectsOfType<ImageDisplay>();
+            if (_images.Length == 0)
+            {
+                _images = FindObjectsOfType<ImageDisplay>();
+            }
 
             foreach (var image in _images)
             {

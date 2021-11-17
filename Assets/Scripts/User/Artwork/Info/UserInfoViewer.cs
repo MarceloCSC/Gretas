@@ -48,41 +48,6 @@ namespace Gretas.User.Artwork.Info
             {
                 var stringBuilder = new StringBuilder();
 
-                if (_currentArtworkInfo.artist != string.Empty)
-                {
-                    stringBuilder.AppendLine($"Artista: {_currentArtworkInfo.artist}");
-                }
-
-                if (_currentArtworkInfo.title != string.Empty)
-                {
-                    stringBuilder.AppendLine($"Título: {_currentArtworkInfo.title}");
-                }
-
-                if (_currentArtworkInfo.location != string.Empty)
-                {
-                    stringBuilder.AppendLine($"Local: {_currentArtworkInfo.location}");
-                }
-
-                if (_currentArtworkInfo.date != string.Empty)
-                {
-                    stringBuilder.AppendLine($"Data: {_currentArtworkInfo.date}");
-                }
-
-                if (_currentArtworkInfo.currentLocation != string.Empty)
-                {
-                    stringBuilder.AppendLine($"Localização atual: {_currentArtworkInfo.currentLocation}");
-                }
-
-                if (_currentArtworkInfo.dimensions != string.Empty)
-                {
-                    stringBuilder.AppendLine($"Dimensões: {_currentArtworkInfo.dimensions}");
-                }
-
-                if (_currentArtworkInfo.materials != string.Empty)
-                {
-                    stringBuilder.AppendLine($"Materiais: {_currentArtworkInfo.materials}");
-                }
-
                 _infoPanel.GetComponentInChildren<TextMeshProUGUI>().text = stringBuilder.ToString();
             }
         }
