@@ -52,7 +52,9 @@ namespace Gretas.Environment
             {
                 if (Vector3.Dot(transform.forward, other.transform.position - transform.position) < 0f)
                 {
+                    other.GetComponent<CharacterController>().enabled = false; // ver possíveis problemas
                     TeleportUser(other.transform);
+                    other.GetComponent<CharacterController>().enabled = true;
 
                     _isEnabled = false;
                     GetComponent<BoxCollider>().enabled = false; // Pode melhorar

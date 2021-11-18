@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8042275261244833894}
   - component: {fileID: 8042275261244833895}
   - component: {fileID: 8042275261244833892}
+  - component: {fileID: 1138317117807284373}
   m_Layer: 0
   m_Name: Gallery Manager
   m_TagString: Untagged
@@ -29,7 +30,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b84828bafb71b54468e5c8ba3c1d5837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _imageFrames: []
+  _images: []
 --- !u!114 &8042275261244833895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a109fbf76fa584b9fb5d2bcff1bcf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _videoFrames: []
+  _videos: []
 --- !u!114 &8042275261244833892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,5 +72,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe16891a3e80b3d438a523b157807a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _infoDatabase:
-    data: []
+  _labels: []
+  _infoJson: {fileID: 4900000, guid: b941885d79f7ac74eb646344ed4fcc9d, type: 3}
+--- !u!114 &1138317117807284373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8042275261244833891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b2993b0cbe560a4b8ba82e133e27dad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
