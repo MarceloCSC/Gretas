@@ -59,6 +59,12 @@ namespace Gretas.User
             _isMovingAfterClicking = true;
         }
 
+        public void MoveAfterTeleport(Transform portal)
+        {
+            Vector3 newPosition = new Vector3(portal.position.x, transform.position.y, portal.position.z) + -portal.forward * 5.0f;
+            _targetPosition = newPosition;
+        }
+
         private void MoveWithKeyboard()
         {
             var inputValues = _inputActions.User.Movement.ReadValue<Vector2>();
@@ -76,6 +82,11 @@ namespace Gretas.User
                 if (Physics.Raycast(_firstPersonCamera.ScreenPointToRay(Mouse.current.position.ReadValue()), out RaycastHit hit, 100.0f, _layerToClick))
                 {
                     _targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+
+                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Portal"))
+                    {
+                        _targetPosition += transform.forward * 1.5f;
+                    }
 
                     _isMovingAfterClicking = true;
                 }
