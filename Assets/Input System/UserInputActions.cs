@@ -53,6 +53,15 @@ public partial class @UserInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Zoom Image"",
+                    ""type"": ""Value"",
+                    ""id"": ""b6ce0809-2ce8-47ed-9a74-7e61ef4051fe"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -187,6 +196,17 @@ public partial class @UserInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5171f42b-68e3-42ce-b787-541da0388b2a"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom Image"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -198,6 +218,7 @@ public partial class @UserInputActions : IInputActionCollection2, IDisposable
         m_User_Movement = m_User.FindAction("Movement", throwIfNotFound: true);
         m_User_Look = m_User.FindAction("Look", throwIfNotFound: true);
         m_User_Interact = m_User.FindAction("Interact", throwIfNotFound: true);
+        m_User_ZoomImage = m_User.FindAction("Zoom Image", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -260,6 +281,7 @@ public partial class @UserInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_User_Movement;
     private readonly InputAction m_User_Look;
     private readonly InputAction m_User_Interact;
+    private readonly InputAction m_User_ZoomImage;
     public struct UserActions
     {
         private @UserInputActions m_Wrapper;
@@ -267,6 +289,7 @@ public partial class @UserInputActions : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_User_Movement;
         public InputAction @Look => m_Wrapper.m_User_Look;
         public InputAction @Interact => m_Wrapper.m_User_Interact;
+        public InputAction @ZoomImage => m_Wrapper.m_User_ZoomImage;
         public InputActionMap Get() { return m_Wrapper.m_User; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -285,6 +308,9 @@ public partial class @UserInputActions : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_UserActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnInteract;
+                @ZoomImage.started -= m_Wrapper.m_UserActionsCallbackInterface.OnZoomImage;
+                @ZoomImage.performed -= m_Wrapper.m_UserActionsCallbackInterface.OnZoomImage;
+                @ZoomImage.canceled -= m_Wrapper.m_UserActionsCallbackInterface.OnZoomImage;
             }
             m_Wrapper.m_UserActionsCallbackInterface = instance;
             if (instance != null)
@@ -298,6 +324,9 @@ public partial class @UserInputActions : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @ZoomImage.started += instance.OnZoomImage;
+                @ZoomImage.performed += instance.OnZoomImage;
+                @ZoomImage.canceled += instance.OnZoomImage;
             }
         }
     }
@@ -307,5 +336,6 @@ public partial class @UserInputActions : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnZoomImage(InputAction.CallbackContext context);
     }
 }

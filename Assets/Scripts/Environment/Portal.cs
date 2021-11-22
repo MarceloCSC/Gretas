@@ -50,7 +50,7 @@ namespace Gretas.Environment
         {
             if (other.CompareTag("User"))
             {
-                if (Vector3.Dot(transform.forward, other.transform.position - transform.position) < 0f)
+                if (Vector3.Dot(transform.forward, other.transform.position - transform.position) < 0.0f)
                 {
                     other.GetComponent<CharacterController>().enabled = false; // ver possíveis problemas
                     TeleportUser(other.transform);

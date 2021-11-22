@@ -53,7 +53,7 @@ namespace Gretas.User
 
         private void LookWithMouse()
         {
-            var inputValues = _inputActions.User.Look.ReadValue<Vector2>();
+            Vector2 inputValues = _inputActions.User.Look.ReadValue<Vector2>();
 
             _mouseX = inputValues.x * _mouseSensitivity * Time.deltaTime;
             _mouseY = inputValues.y * _mouseSensitivity * Time.deltaTime;

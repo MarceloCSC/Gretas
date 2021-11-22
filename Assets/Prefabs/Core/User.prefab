@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7905256027118045415}
   - component: {fileID: 7905256027118045400}
   - component: {fileID: 7905256027118045414}
-  - component: {fileID: 7905256027118045413}
+  - component: {fileID: 8062827322553772739}
   m_Layer: 0
   m_Name: User
   m_TagString: User
@@ -106,7 +106,7 @@ MonoBehaviour:
   _layerToClick:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &7905256027118045413
+--- !u!114 &8062827322553772739
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,7 +119,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _infoPanel: {fileID: 0}
-  _expandButton: {fileID: 0}
+  _infoExpandButton: {fileID: 0}
+  _imagePanel: {fileID: 0}
+  _imageExpandButton: {fileID: 0}
 --- !u!1 &7905256028155961270
 GameObject:
   m_ObjectHideFlags: 0

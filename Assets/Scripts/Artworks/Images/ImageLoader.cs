@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using Gretas.Core;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -8,21 +10,45 @@ namespace Gretas.Artworks.Images
     {
         [SerializeField] private ImageDisplay[] _images;
 
+        private List<string> _requestedImages;
         private const string _path = "https://gretasgaleria.blob.core.windows.net/data/images";
 
-        private void Start()
+        private void Awake()
         {
             if (_images.Length == 0)
             {
                 _images = FindObjectsOfType<ImageDisplay>();
             }
 
+            _requestedImages = new List<string>();
+        }
+
+        private void Start()
+        {
             foreach (var image in _images)
             {
-                image.GetComponentInChildren<ImageOptimizationManager>().OnProximity += OptimizeImage;
+                if (DataCache.Instance.Textures.TryGetValue($"{image.Id}-medium", out Texture2D texture))
+                {
+                    var material = new Material(Shader.Find("Unlit/Texture"))
+                    {
+                        mainTexture = texture
+                    };
 
-                //string url = GetUrl(image.Id, ImageQuality.Low);
-                //StartCoroutine(GetTextureRequest(url, image));
+                    image.GetComponent<MeshRenderer>().material = material;
+                }
+                else
+                {
+                    image.GetComponentInChildren<ImageOptimizationTrigger>().OnProximity += OptimizeImage;
+                }
+            }
+        }
+
+        public void GetHighResTexture(ImageDisplay image)
+        {
+            if (!_requestedImages.Contains(image.Id))
+            {
+                _requestedImages.Add(image.Id);
+                StartCoroutine(GetTextureRequest(image, ImageQuality.High));
             }
         }
 
@@ -32,13 +58,15 @@ namespace Gretas.Artworks.Images
             {
                 if (image.Id == imageId)
                 {
-                    StartCoroutine(GetTextureRequest(GetUrl(imageId, ImageQuality.Medium), image));
+                    StartCoroutine(GetTextureRequest(image, ImageQuality.Medium));
                 }
             }
         }
 
-        private IEnumerator GetTextureRequest(string url, ImageDisplay image)
+        private IEnumerator GetTextureRequest(ImageDisplay image, ImageQuality quality)
         {
+            string url = $"{_path}/{quality.ToString().ToLower()}/{image.Id}.png";
+
             using var webRequest = UnityWebRequestTexture.GetTexture(url);
 
             yield return webRequest.SendWebRequest();
@@ -46,6 +74,11 @@ namespace Gretas.Artworks.Images
             if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
             {
                 Debug.LogError(webRequest.error);
+
+                if (_requestedImages.Contains(image.Id))
+                {
+                    _requestedImages.Remove(image.Id);
+                }
             }
             else
             {
@@ -55,28 +88,30 @@ namespace Gretas.Artworks.Images
 
                     var texture = new Texture2D(downloadedTexture.width, downloadedTexture.height);
 
-                    texture.SetPixels(downloadedTexture.GetPixels());
+                    texture.SetPixels32(downloadedTexture.GetPixels32());
                     texture.Apply();
 
-                    var material = new Material(Shader.Find("Unlit/Texture"))
+                    if (quality == ImageQuality.Medium)
                     {
-                        mainTexture = texture
-                    };
+                        CreateMaterial(image, texture);
+                    }
+                    else if (quality == ImageQuality.High)
+                    {
+                    }
 
-                    image.GetComponent<MeshRenderer>().material = material;
-                    //imageFrame.transform.localScale = new Vector3(8.0f, GetHeight(texture.width, texture.height), 1);
+                    DataCache.Instance.Textures.Add($"{image.Id}-{quality.ToString().ToLower()}", texture);
                 }
             }
         }
 
-        private string GetUrl(string imageId, ImageQuality quality)
+        private void CreateMaterial(ImageDisplay image, Texture2D texture)
         {
-            return $"{_path}/{quality.ToString().ToLower()}/{imageId}.png";
-        }
+            var material = new Material(Shader.Find("Unlit/Texture"))
+            {
+                mainTexture = texture
+            };
 
-        private float GetHeight(float width, float height)
-        {
-            return height * 8.0f / width;
+            image.GetComponent<MeshRenderer>().material = material;
         }
     }
 }

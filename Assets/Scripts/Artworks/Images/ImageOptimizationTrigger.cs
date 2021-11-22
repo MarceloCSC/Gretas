@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Gretas.Artworks.Images
 {
-    public class ImageOptimizationManager : MonoBehaviour
+    public class ImageOptimizationTrigger : MonoBehaviour
     {
         public event Action<string> OnProximity = delegate { };
 
@@ -11,7 +11,7 @@ namespace Gretas.Artworks.Images
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!_isOptimized && other.GetComponent<CharacterController>())
+            if (!_isOptimized && other.CompareTag("User"))
             {
                 _isOptimized = true;
                 OnProximity(GetComponentInParent<ImageDisplay>().Id);

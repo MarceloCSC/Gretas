@@ -51,11 +51,11 @@ namespace Gretas.User
             }
         }
 
-        public void MoveToArtwork(Transform artwork)
+        public void MoveToTarget(Transform target, bool isSelf = false)
         {
-            _targetPosition = artwork.position - artwork.forward * 5.0f;
+            Vector3 offset = isSelf ? Vector3.zero : target.forward * 5.0f;
+            _targetPosition = target.position - offset;
             _targetPosition.y = transform.position.y;
-            //CANCEL IN CASE OF INPUT DURING MOVEMENT
             _isMovingAfterClicking = true;
         }
 
@@ -67,7 +67,7 @@ namespace Gretas.User
 
         private void MoveWithKeyboard()
         {
-            var inputValues = _inputActions.User.Movement.ReadValue<Vector2>();
+            Vector2 inputValues = _inputActions.User.Movement.ReadValue<Vector2>();
 
             Vector3 forwardMovement = transform.forward * inputValues.y;
             Vector3 rightMovement = transform.right * inputValues.x;

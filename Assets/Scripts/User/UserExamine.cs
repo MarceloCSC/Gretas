@@ -1,5 +1,5 @@
-using Gretas.Artworks;
-using Gretas.User.Artwork.Info;
+using Gretas.Artworks.Images;
+using Gretas.User.Artworks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -24,7 +24,7 @@ namespace Gretas.User
         private UserInputActions _inputActions;
         private UserMovement _movement;
         private UserVision _vision;
-        private UserInfoViewer _infoViewer;
+        private UserImageViewer _imageViewer;
 
         private void Awake()
         {
@@ -32,21 +32,21 @@ namespace Gretas.User
             _secondaryCamera.enabled = false;
             _movement = GetComponent<UserMovement>();
             _vision = GetComponent<UserVision>();
-            _infoViewer = GetComponent<UserInfoViewer>();
+            _imageViewer = GetComponent<UserImageViewer>();
         }
 
         private void OnEnable()
         {
             _inputActions.User.Enable();
             _inputActions.User.Interact.canceled += ExamineArtwork;
-            _inputActions.User.Movement.performed += ExitVisualization;
+            _inputActions.User.Movement.performed += _ => ExitVisualization();
         }
 
         private void OnDisable()
         {
             _inputActions.User.Disable();
             _inputActions.User.Interact.canceled -= ExamineArtwork;
-            _inputActions.User.Movement.performed -= ExitVisualization;
+            _inputActions.User.Movement.performed -= _ => ExitVisualization();
         }
 
         private void LateUpdate()
@@ -62,13 +62,14 @@ namespace Gretas.User
             }
         }
 
-        public void ExitVisualization(InputAction.CallbackContext context)
+        public void ExitVisualization()
         {
             if (_isExamining)
             {
                 _isPositioning = false;
                 _isResetting = true;
-                _infoViewer.ActivatePanel(false);
+                _movement.MoveToTarget(transform, true);
+                _imageViewer.ActivatePanels(false);
             }
         }
 
@@ -84,22 +85,27 @@ namespace Gretas.User
 
                     ChangeCameras();
 
-                    // rotate main camera to face painting
+                    // Possibly rotate main camera to face painting
                     _movement.CanMove = false;
-                    _movement.MoveToArtwork(hit.transform);
+                    _movement.MoveToTarget(hit.transform);
                     _vision.CanLook = false;
                     _isPositioning = true;
                     _isExamining = true;
-                    _infoViewer.ActivatePanel(true);
-                    _infoViewer.LoadArtworkInfo(hit.transform.GetComponent<IDisplay>().Id);
+
+                    if (hit.transform.TryGetComponent(out ImageDisplay imageDisplay))
+                    {
+                        _imageViewer.ActivatePanels(true);
+                        _imageViewer.GetImageData(imageDisplay);
+                    }
                 }
             }
         }
 
         private void PositionCamera()
         {
-            var position = Vector3.MoveTowards(_secondaryCamera.transform.position, _position, _speed * Time.deltaTime);
-            var rotation = Quaternion.Slerp(_secondaryCamera.transform.rotation, _rotation, _speed * Time.deltaTime);
+            float gradualSpeed = Vector3.Distance(_secondaryCamera.transform.position, _position) * _speed; // Temporary
+            Vector3 position = Vector3.MoveTowards(_secondaryCamera.transform.position, _position, gradualSpeed * Time.deltaTime);
+            Quaternion rotation = Quaternion.Slerp(_secondaryCamera.transform.rotation, _rotation, _speed * Time.deltaTime);
 
             _secondaryCamera.transform.SetPositionAndRotation(position, rotation);
 
@@ -112,8 +118,9 @@ namespace Gretas.User
 
         private void ResettingCamera()
         {
-            var position = Vector3.MoveTowards(_secondaryCamera.transform.position, _mainCamera.transform.position, _speed * 2 * Time.deltaTime);
-            var rotation = Quaternion.Slerp(_secondaryCamera.transform.rotation, _mainCamera.transform.rotation, _speed * 2 * Time.deltaTime);
+            float gradualSpeed = Vector3.Distance(_secondaryCamera.transform.position, _mainCamera.transform.position) * _speed; // Temporary
+            Vector3 position = Vector3.MoveTowards(_secondaryCamera.transform.position, _mainCamera.transform.position, gradualSpeed * Time.deltaTime);
+            Quaternion rotation = Quaternion.Slerp(_secondaryCamera.transform.rotation, _mainCamera.transform.rotation, _speed * 2 * Time.deltaTime);
 
             _secondaryCamera.transform.SetPositionAndRotation(position, rotation);
 
