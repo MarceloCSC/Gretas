@@ -92,7 +92,7 @@ namespace Gretas.User
                     _isPositioning = true;
                     _isExamining = true;
 
-                    if (hit.transform.TryGetComponent(out ImageDisplay imageDisplay))
+                    if (hit.transform.parent.TryGetComponent(out ImageDisplay imageDisplay))
                     {
                         _imageViewer.ActivatePanels(true);
                         _imageViewer.GetImageData(imageDisplay);

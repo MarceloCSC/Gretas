@@ -34,7 +34,7 @@ namespace Gretas.Artworks.Images
                         mainTexture = texture
                     };
 
-                    image.GetComponent<MeshRenderer>().material = material;
+                    image.SurfaceToRender.GetComponent<MeshRenderer>().material = material;
                 }
                 else
                 {
@@ -111,7 +111,7 @@ namespace Gretas.Artworks.Images
                 mainTexture = texture
             };
 
-            image.GetComponent<MeshRenderer>().material = material;
+            image.SurfaceToRender.GetComponent<MeshRenderer>().material = material;
         }
     }
 }
