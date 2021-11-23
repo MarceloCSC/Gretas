@@ -30,61 +30,51 @@ namespace Gretas.Artworks.Info
             }
         }
 
-        public ArtworkInfo GetArtworkInfo(string artworkId)
-        {
-            //foreach (var artworkInfo in _infoDatabase.data)
-            //{
-            //    if (artworkInfo.artworkId == artworkId)
-            //    {
-            //        return artworkInfo;
-            //    }
-            //}
-
-            //Debug.LogWarning("The corresponding artwork could not be found in our database.");
-
-            return null;
-        }
-
         private void LoadArtworkInfo(InfoLabel label, ArtworkInfo artworkInfo)
         {
             var stringBuilder = new StringBuilder();
 
-            if (artworkInfo.artist != string.Empty)
-            {
-                stringBuilder.AppendLine($"Artista: {artworkInfo.artist}");
-            }
-
             if (artworkInfo.title != string.Empty)
             {
-                stringBuilder.AppendLine($"Título: {artworkInfo.title}");
+                label.transform.GetChild(0).GetComponent<TextMeshPro>().text = artworkInfo.title;
+            }
+
+            if (artworkInfo.artist != string.Empty)
+            {
+                stringBuilder.AppendLine(artworkInfo.artist);
             }
 
             if (artworkInfo.location != string.Empty)
             {
-                stringBuilder.AppendLine($"Local: {artworkInfo.location}");
+                stringBuilder.AppendLine(artworkInfo.location);
             }
 
             if (artworkInfo.date != string.Empty)
             {
-                stringBuilder.AppendLine($"Data: {artworkInfo.date}");
+                stringBuilder.AppendLine(artworkInfo.date);
             }
 
             if (artworkInfo.currentLocation != string.Empty)
             {
-                stringBuilder.AppendLine($"Localização atual: {artworkInfo.currentLocation}");
+                stringBuilder.AppendLine(artworkInfo.currentLocation);
             }
 
             if (artworkInfo.dimensions != string.Empty)
             {
-                stringBuilder.AppendLine($"Dimensões: {artworkInfo.dimensions}");
+                stringBuilder.AppendLine(artworkInfo.dimensions);
+            }
+
+            if (artworkInfo.fileSize != string.Empty)
+            {
+                stringBuilder.AppendLine(artworkInfo.fileSize);
             }
 
             if (artworkInfo.materials != string.Empty)
             {
-                stringBuilder.AppendLine($"Materiais: {artworkInfo.materials}");
+                stringBuilder.AppendLine(artworkInfo.materials);
             }
 
-            label.GetComponentInChildren<TextMeshPro>().text = stringBuilder.ToString();
+            label.transform.GetChild(1).GetComponent<TextMeshPro>().text = stringBuilder.ToString();
         }
     }
 }

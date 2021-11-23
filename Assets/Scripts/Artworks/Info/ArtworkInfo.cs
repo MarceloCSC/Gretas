@@ -11,6 +11,7 @@ namespace Gretas.Artworks.Info
         public string date;
         public string currentLocation;
         public string dimensions;
+        public string fileSize;
         public string materials;
     }
 }
