@@ -166,6 +166,17 @@
                 },
                 {
                     "name": "",
+                    "id": "463879c3-26fa-42ad-88ad-32eea42f0f11",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5b077bbc-8a72-45d8-8bb8-85e5b8b5fbcd",
                     "path": "<Mouse>/leftButton",
                     "interactions": "Hold(duration=0.2),Press",

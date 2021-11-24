@@ -25,6 +25,8 @@ namespace Gretas.Artworks.Images
 
         private void Start()
         {
+            if (_images.Length == 0) return;
+
             foreach (var image in _images)
             {
                 if (DataCache.Instance.Textures.TryGetValue($"{image.Id}-medium", out Texture2D texture))
@@ -94,9 +96,6 @@ namespace Gretas.Artworks.Images
                     if (quality == ImageQuality.Medium)
                     {
                         CreateMaterial(image, texture);
-                    }
-                    else if (quality == ImageQuality.High)
-                    {
                     }
 
                     DataCache.Instance.Textures.Add($"{image.Id}-{quality.ToString().ToLower()}", texture);

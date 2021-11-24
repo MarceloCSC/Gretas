@@ -1,4 +1,5 @@
 using Gretas.Artworks.Images;
+using Gretas.Artworks.Labels;
 using Gretas.User.Artworks;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -24,7 +25,7 @@ namespace Gretas.User
         private UserInputActions _inputActions;
         private UserMovement _movement;
         private UserVision _vision;
-        private UserImageViewer _imageViewer;
+        private UserUI _userUI;
 
         private void Awake()
         {
@@ -32,7 +33,7 @@ namespace Gretas.User
             _secondaryCamera.enabled = false;
             _movement = GetComponent<UserMovement>();
             _vision = GetComponent<UserVision>();
-            _imageViewer = GetComponent<UserImageViewer>();
+            _userUI = GetComponent<UserUI>();
         }
 
         private void OnEnable()
@@ -69,7 +70,8 @@ namespace Gretas.User
                 _isPositioning = false;
                 _isResetting = true;
                 _movement.MoveToTarget(transform, true);
-                _imageViewer.ActivatePanels(false);
+                _userUI.ActivatePanels(false);
+                _userUI.HideNavigation(false);
             }
         }
 
@@ -94,8 +96,13 @@ namespace Gretas.User
 
                     if (hit.transform.parent.TryGetComponent(out ImageDisplay imageDisplay))
                     {
-                        _imageViewer.ActivatePanels(true);
-                        _imageViewer.GetImageData(imageDisplay);
+                        _userUI.ActivatePanels(true);
+                        _userUI.HideNavigation(true);
+                        _userUI.GetImageData(imageDisplay);
+                    }
+                    else if (hit.transform.parent.TryGetComponent(out LabelDisplay labelDisplay))
+                    {
+                        _userUI.HideNavigation(true);
                     }
                 }
             }

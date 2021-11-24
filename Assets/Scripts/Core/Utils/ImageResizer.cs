@@ -28,11 +28,11 @@ namespace Gretas.Core.Utils
             {
                 var surfaceToRender = GetComponent<ImageDisplay>().SurfaceToRender;
 
-                if (!_isMaterialSet)
-                {
-                    surfaceToRender.GetComponent<MeshRenderer>().material = _material;
-                    _isMaterialSet = true;
-                }
+                //if (!_isMaterialSet)
+                //{
+                //    surfaceToRender.GetComponent<MeshRenderer>().material = _material;
+                //    _isMaterialSet = true;
+                //}
 
                 if (!_hasBeenResized)
                 {

@@ -72,8 +72,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe16891a3e80b3d438a523b157807a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _labels: []
-  _infoJson: {fileID: 4900000, guid: b941885d79f7ac74eb646344ed4fcc9d, type: 3}
+  _labelsDisplay: []
+  _labelsJson: {fileID: 4900000, guid: b941885d79f7ac74eb646344ed4fcc9d, type: 3}
 --- !u!114 &1138317117807284373
 MonoBehaviour:
   m_ObjectHideFlags: 0

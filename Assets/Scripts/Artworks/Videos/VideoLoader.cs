@@ -7,13 +7,24 @@ namespace Gretas.Artworks.Videos
     {
         [SerializeField] private VideoDisplay[] _videos;
 
+        private const string _path = "https://gretasgaleria.blob.core.windows.net/data/videos";
+
+        private void Awake()
+        {
+            if (_videos.Length == 0)
+            {
+                _videos = FindObjectsOfType<VideoDisplay>();
+            }
+        }
+
         private void Start()
         {
-            _videos = FindObjectsOfType<VideoDisplay>();
-
-            foreach (var video in _videos)
+            if (_videos.Length > 0)
             {
-                LoadVideo(video);
+                foreach (var video in _videos)
+                {
+                    LoadVideo(video);
+                }
             }
         }
 
@@ -36,12 +47,7 @@ namespace Gretas.Artworks.Videos
 
         private string FindUrl(string videoId)
         {
-            return videoId switch
-            {
-                "vid0001" => "https://gretasgaleria.blob.core.windows.net/data/videos/vid01.mp4",
-                "vid0002" => "https://gretasgaleria.blob.core.windows.net/data/videos/vid02.mp4",
-                _ => string.Empty,
-            };
+            return $"{_path}/{videoId}.mp4";
         }
     }
 }

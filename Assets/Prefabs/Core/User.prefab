@@ -115,13 +115,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7905256027118045403}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1df7ec1c1dbe24946abcb0ad87fd7e2a, type: 3}
+  m_Script: {fileID: 11500000, guid: 5cb475e21e1f7d043822a67b05ac1225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _infoPanel: {fileID: 0}
-  _infoExpandButton: {fileID: 0}
+  _galleryManager: {fileID: 0}
   _imagePanel: {fileID: 0}
   _imageExpandButton: {fileID: 0}
+  _navigationPanel: {fileID: 0}
+  _exitButton: {fileID: 0}
 --- !u!1 &7905256028155961270
 GameObject:
   m_ObjectHideFlags: 0
