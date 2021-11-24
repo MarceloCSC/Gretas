@@ -1,5 +1,7 @@
 using Gretas.Artworks.Images;
 using Gretas.Artworks.Labels;
+using Gretas.Artworks.Videos;
+using Gretas.Environment;
 using Gretas.User.Artworks;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -82,7 +84,14 @@ namespace Gretas.User
                 if (Physics.Raycast(_mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()), out RaycastHit hit, 100.0f, _layerToClick))
                 {
                     float minDistance = CalculateDistance(hit.transform.GetComponent<MeshRenderer>().bounds);
-                    _position = hit.transform.position - hit.transform.forward * minDistance;
+
+                    // Temporary solution!!! Change this down below later!
+
+                    float offset = hit.transform.localScale.x < hit.transform.localScale.y
+                        ? hit.transform.localScale.y / hit.transform.localScale.x
+                        : 1.0f;
+
+                    _position = hit.transform.position - hit.transform.forward * minDistance * offset;
                     _rotation = Quaternion.LookRotation(hit.transform.forward);
 
                     ChangeCameras();
@@ -94,13 +103,17 @@ namespace Gretas.User
                     _isPositioning = true;
                     _isExamining = true;
 
-                    if (hit.transform.parent.TryGetComponent(out ImageDisplay imageDisplay))
+                    if (hit.transform.GetComponent<SceneLoader>())
+                    {
+                        _userUI.ActivateSceneLoadPanel();
+                    }
+                    else if (hit.transform.parent.TryGetComponent(out ImageDisplay imageDisplay))
                     {
                         _userUI.ActivatePanels(true);
                         _userUI.HideNavigation(true);
                         _userUI.GetImageData(imageDisplay);
                     }
-                    else if (hit.transform.parent.TryGetComponent(out LabelDisplay labelDisplay))
+                    else if (hit.transform.parent.GetComponent<LabelDisplay>() /*|| hit.transform.parent.GetComponent<VideoDisplay>()*/)
                     {
                         _userUI.HideNavigation(true);
                     }
@@ -110,7 +123,7 @@ namespace Gretas.User
 
         private void PositionCamera()
         {
-            float gradualSpeed = Vector3.Distance(_secondaryCamera.transform.position, _position) * _speed; // Temporary
+            float gradualSpeed = Vector3.Distance(_secondaryCamera.transform.position, _position) * _speed; // Temporary solution
             Vector3 position = Vector3.MoveTowards(_secondaryCamera.transform.position, _position, gradualSpeed * Time.deltaTime);
             Quaternion rotation = Quaternion.Slerp(_secondaryCamera.transform.rotation, _rotation, _speed * Time.deltaTime);
 
@@ -125,7 +138,7 @@ namespace Gretas.User
 
         private void ResettingCamera()
         {
-            float gradualSpeed = Vector3.Distance(_secondaryCamera.transform.position, _mainCamera.transform.position) * _speed; // Temporary
+            float gradualSpeed = Vector3.Distance(_secondaryCamera.transform.position, _mainCamera.transform.position) * _speed; // Temporary solution
             Vector3 position = Vector3.MoveTowards(_secondaryCamera.transform.position, _mainCamera.transform.position, gradualSpeed * Time.deltaTime);
             Quaternion rotation = Quaternion.Slerp(_secondaryCamera.transform.rotation, _mainCamera.transform.rotation, _speed * 2 * Time.deltaTime);
 

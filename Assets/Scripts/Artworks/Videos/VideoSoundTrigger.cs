@@ -4,6 +4,8 @@ namespace Gretas.Artworks.Videos
 {
     public class VideoSoundTrigger : MonoBehaviour
     {
+        [SerializeField] private bool _isMuted;
+
         private AudioSource _audioSource;
 
         private void Awake()
@@ -13,7 +15,7 @@ namespace Gretas.Artworks.Videos
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("User"))
+            if (!_isMuted && other.CompareTag("User"))
             {
                 _audioSource.mute = false;
             }
@@ -21,7 +23,7 @@ namespace Gretas.Artworks.Videos
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("User"))
+            if (!_isMuted && other.CompareTag("User"))
             {
                 _audioSource.mute = true;
             }

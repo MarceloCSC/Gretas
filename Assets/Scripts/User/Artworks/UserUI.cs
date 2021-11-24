@@ -13,7 +13,8 @@ namespace Gretas.User.Artworks
         [SerializeField] private GameObject _imageExpandButton;
         [SerializeField] private GameObject _navigationPanel;
         [SerializeField] private GameObject _exitButton;
-
+        [SerializeField] private GameObject _sceneLoadPanel;
+        [SerializeField] private GameObject _refuseButton;
         //[SerializeField] private GameObject _infoPanel;
         //[SerializeField] private GameObject _infoExpandButton;
 
@@ -25,6 +26,7 @@ namespace Gretas.User.Artworks
             _imagePanel.SetActive(false);
             _imageExpandButton.SetActive(false);
             _exitButton.SetActive(false);
+            _sceneLoadPanel.SetActive(false);
             //_infoPanel.SetActive(false);
             //_infoExpandButton.SetActive(false);
             _imageLoader = _galleryManager.GetComponent<ImageLoader>();
@@ -36,6 +38,7 @@ namespace Gretas.User.Artworks
             _imagePanel.GetComponentInChildren<Button>().onClick.AddListener(CloseImagePanel);
             _imageExpandButton.GetComponent<Button>().onClick.AddListener(ExpandImagePanel);
             _exitButton.GetComponent<Button>().onClick.AddListener(GetComponent<UserExamine>().ExitVisualization);
+            _refuseButton.GetComponent<Button>().onClick.AddListener(GetComponent<UserExamine>().ExitVisualization);
             //_infoPanel.GetComponentInChildren<Button>().onClick.AddListener(CloseInfoPanel);
             //_infoExpandButton.GetComponent<Button>().onClick.AddListener(ExpandInfoPanel);
         }
@@ -57,6 +60,10 @@ namespace Gretas.User.Artworks
                 _exitButton.GetComponent<Button>().onClick.RemoveListener(GetComponent<UserExamine>().ExitVisualization);
             }
 
+            if (_refuseButton)
+            {
+                _refuseButton.GetComponent<Button>().onClick.RemoveListener(GetComponent<UserExamine>().ExitVisualization);
+            }
             //if (_infoPanel)
             //{
             //    _infoPanel.GetComponentInChildren<Button>().onClick.RemoveListener(CloseInfoPanel);
@@ -80,6 +87,7 @@ namespace Gretas.User.Artworks
             {
                 _imageExpandButton.GetComponent<Button>().interactable = false;
                 _imageLoader.GetHighResTexture(image);
+
                 StartCoroutine(LoadTexture(image.Id));
             }
         }
@@ -92,7 +100,9 @@ namespace Gretas.User.Artworks
             if (!isActive)
             {
                 StopAllCoroutines();
+
                 _imagePanel.SetActive(false);
+                _sceneLoadPanel.SetActive(false);
                 //_infoPanel.SetActive(false);
             }
         }
@@ -101,6 +111,13 @@ namespace Gretas.User.Artworks
         {
             _navigationPanel.SetActive(!isHidden);
             _exitButton.SetActive(isHidden);
+        }
+
+        public void ActivateSceneLoadPanel()
+        {
+            _sceneLoadPanel.SetActive(true);
+            _navigationPanel.SetActive(false);
+
         }
 
         private IEnumerator LoadTexture(string imageId)

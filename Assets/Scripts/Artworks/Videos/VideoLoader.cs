@@ -7,7 +7,7 @@ namespace Gretas.Artworks.Videos
     {
         [SerializeField] private VideoDisplay[] _videos;
 
-        private const string _path = "https://gretasgaleria.blob.core.windows.net/data/videos";
+        private const string _path = "https://player.vimeo.com/external";
 
         private void Awake()
         {
@@ -33,7 +33,7 @@ namespace Gretas.Artworks.Videos
             var texture = new RenderTexture(1280, 720, 24);
             var videoPlayer = video.GetComponent<VideoPlayer>();
 
-            videoPlayer.url = FindUrl(video.Id);
+            videoPlayer.url = $"{_path}/{video.Id}";
             videoPlayer.targetTexture = texture;
 
             var material = new Material(Shader.Find("Unlit/Texture"))
@@ -42,12 +42,7 @@ namespace Gretas.Artworks.Videos
             };
 
             video.GetComponent<AudioSource>().mute = true;
-            video.GetComponent<MeshRenderer>().material = material;
-        }
-
-        private string FindUrl(string videoId)
-        {
-            return $"{_path}/{videoId}.mp4";
+            video.GetComponentInChildren<MeshRenderer>().material = material;
         }
     }
 }
