@@ -7,8 +7,11 @@ namespace Gretas.Environment
 {
     public class SceneLoader : MonoBehaviour
     {
+        [Header("Scene Load Panel")]
         [SerializeField] private GameObject _acceptButton;
-        [SerializeField] private TextMeshProUGUI _textMeshPro;
+        [SerializeField] private TextMeshProUGUI _messageDisplay;
+
+        [Space]
         [SerializeField] private string _firstSceneMessage;
         [SerializeField] private string _otherScenesMessage;
         [SerializeField] private string _lastSceneMessage;
@@ -17,15 +20,15 @@ namespace Gretas.Environment
         {
             if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1)
             {
-                _textMeshPro.text = _lastSceneMessage;
+                _messageDisplay.text = _lastSceneMessage;
             }
             else if (SceneManager.GetActiveScene().buildIndex > 0)
             {
-                _textMeshPro.text = _otherScenesMessage;
+                _messageDisplay.text = _otherScenesMessage;
             }
             else
             {
-                _textMeshPro.text = _firstSceneMessage;
+                _messageDisplay.text = _firstSceneMessage;
             }
         }
 

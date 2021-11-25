@@ -30,7 +30,7 @@ namespace Gretas.Artworks.Videos
 
         private void LoadVideo(VideoDisplay video)
         {
-            var texture = new RenderTexture(1280, 720, 24);
+            var texture = new RenderTexture((int)video.Resolution.x, (int)video.Resolution.y, 24);
             var videoPlayer = video.GetComponent<VideoPlayer>();
 
             videoPlayer.url = $"{_path}/{video.Id}";

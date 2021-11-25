@@ -14,7 +14,7 @@ namespace Gretas.UI
         private void Awake()
         {
             _inputActions = new UserInputActions();
-            _initialScale = Vector3.one;
+            _initialScale = new Vector3(1.1f, 1.1f, 1.0f);
         }
 
         private void OnEnable()
@@ -46,7 +46,7 @@ namespace Gretas.UI
 
         private Vector3 ClampScale(Vector3 targetScale)
         {
-            return Vector3.Max(_initialScale, Vector3.Min(_initialScale * _maxZoom, targetScale));
+            return Vector3.Max(Vector3.one, Vector3.Min(Vector3.one * _maxZoom, targetScale));
         }
     }
 }

@@ -785,6 +785,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2667188187190588918, guid: 1f4b81c2e4118b148a8301f8915124fc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 10.299988
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f4b81c2e4118b148a8301f8915124fc, type: 3}
 --- !u!1 &340971297 stripped
@@ -6746,6 +6750,10 @@ PrefabInstance:
       propertyPath: _refuseButton
       value: 
       objectReference: {fileID: 1166682405}
+    - target: {fileID: 8745798565304481262, guid: ccf67c07f3719424c8c4a815ca2c6737, type: 3}
+      propertyPath: _messageDisplay
+      value: 
+      objectReference: {fileID: 452975011}
     - target: {fileID: 8745798565304481262, guid: ccf67c07f3719424c8c4a815ca2c6737, type: 3}
       propertyPath: _sceneLoadPanel
       value: 
