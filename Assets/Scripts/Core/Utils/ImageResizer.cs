@@ -7,6 +7,8 @@ namespace Gretas.Core.Utils
 {
     public class ImageResizer : MonoBehaviour
     {
+#if UNITY_EDITOR
+
         private enum ImageSize
         {
             XtraSmall = 1,
@@ -115,5 +117,7 @@ namespace Gretas.Core.Utils
 
             return newWidth;
         }
+
+#endif
     }
 }
