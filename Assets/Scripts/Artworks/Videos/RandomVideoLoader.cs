@@ -30,7 +30,8 @@ namespace Gretas.Artworks.Videos
                 _videosPlayed.Add(videoUrl);
 
                 var videoPlayer = display.GetComponent<VideoPlayer>();
-                videoPlayer.GetComponent<AudioSource>().mute = true;
+                videoPlayer.SetDirectAudioVolume(0, 0.0f);
+                videoPlayer.SetDirectAudioMute(0, true);
                 videoPlayer.loopPointReached += SelectRandomVideo;
 
                 LoadVideo(videoPlayer, videoUrl);

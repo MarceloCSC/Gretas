@@ -1,32 +1,51 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Video;
 
 namespace Gretas.Artworks.Videos
 {
     public class VideoSoundTrigger : MonoBehaviour
     {
-        [SerializeField] private bool _isMuted;
+        [SerializeField] private float _maxVolume;
+        [SerializeField] private bool _hasAudio;
 
-        private AudioSource _audioSource;
+        private VideoPlayer _videoPlayer;
 
         private void Awake()
         {
-            _audioSource = GetComponentInParent<AudioSource>();
+            _videoPlayer = GetComponentInParent<VideoPlayer>();
+            _videoPlayer.audioOutputMode = VideoAudioOutputMode.Direct;
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!_isMuted && other.CompareTag("User"))
+            if (_hasAudio && other.CompareTag("User"))
             {
-                _audioSource.mute = false;
+                _videoPlayer.SetDirectAudioMute(0, false);
+                StartCoroutine(ChangeVolume(_maxVolume, 0.001f));
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (!_isMuted && other.CompareTag("User"))
+            if (_hasAudio && other.CompareTag("User"))
             {
-                _audioSource.mute = true;
+                StartCoroutine(ChangeVolume(0.0f, -0.001f));
             }
+        }
+
+        private IEnumerator ChangeVolume(float desiredVolume, float increment)
+        {
+            float currentVolume = _videoPlayer.GetDirectAudioVolume(0);
+
+            while (Mathf.Abs(currentVolume - desiredVolume) > 0.01f)
+            {
+                _videoPlayer.SetDirectAudioVolume(0, currentVolume += increment);
+
+                yield return null;
+            }
+
+            _videoPlayer.SetDirectAudioMute(0, desiredVolume == 0.0f);
         }
     }
 }
