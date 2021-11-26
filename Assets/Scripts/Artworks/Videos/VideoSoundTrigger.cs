@@ -13,8 +13,11 @@ namespace Gretas.Artworks.Videos
 
         private void Awake()
         {
-            _videoPlayer = GetComponentInParent<VideoPlayer>();
-            _videoPlayer.audioOutputMode = VideoAudioOutputMode.Direct;
+            if (_hasAudio)
+            {
+                _videoPlayer = GetComponentInParent<VideoPlayer>();
+                _videoPlayer.audioOutputMode = VideoAudioOutputMode.Direct;
+            }
         }
 
         private void OnTriggerEnter(Collider other)

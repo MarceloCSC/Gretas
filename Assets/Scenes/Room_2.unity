@@ -227,6 +227,14 @@ PrefabInstance:
       propertyPath: _isMuted
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7172024843767571178, guid: bd34d255b940ccc409477e3bb04fe78f, type: 3}
+      propertyPath: _hasAudio
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172024843767571178, guid: bd34d255b940ccc409477e3bb04fe78f, type: 3}
+      propertyPath: _maxVolume
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7172024845126200715, guid: bd34d255b940ccc409477e3bb04fe78f, type: 3}
       propertyPath: m_Name
       value: Video (0)
@@ -1598,7 +1606,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25428
+  m_Name: pb_Mesh52586
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1893,7 +1901,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25326
+  m_Name: pb_Mesh52484
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2892,7 +2900,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-5528
+  m_Name: pb_Mesh-36986
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4494,7 +4502,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-5558
+  m_Name: pb_Mesh-37016
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5114,6 +5122,14 @@ PrefabInstance:
       propertyPath: _isMuted
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7172024843767571178, guid: bd34d255b940ccc409477e3bb04fe78f, type: 3}
+      propertyPath: _hasAudio
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172024843767571178, guid: bd34d255b940ccc409477e3bb04fe78f, type: 3}
+      propertyPath: _maxVolume
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7172024845126200715, guid: bd34d255b940ccc409477e3bb04fe78f, type: 3}
       propertyPath: m_Name
       value: Video (2)
@@ -5133,6 +5149,10 @@ PrefabInstance:
     - target: {fileID: 7172024845126200752, guid: bd34d255b940ccc409477e3bb04fe78f, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172024845126200753, guid: bd34d255b940ccc409477e3bb04fe78f, type: 3}
+      propertyPath: m_DirectAudioMutes.Array.data[0]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7172024845126200758, guid: bd34d255b940ccc409477e3bb04fe78f, type: 3}
       propertyPath: m_RootOrder
@@ -5246,6 +5266,14 @@ PrefabInstance:
     - target: {fileID: 7172024843767571178, guid: bd34d255b940ccc409477e3bb04fe78f, type: 3}
       propertyPath: _isMuted
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172024843767571178, guid: bd34d255b940ccc409477e3bb04fe78f, type: 3}
+      propertyPath: _hasAudio
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172024843767571178, guid: bd34d255b940ccc409477e3bb04fe78f, type: 3}
+      propertyPath: _maxVolume
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7172024845126200715, guid: bd34d255b940ccc409477e3bb04fe78f, type: 3}
       propertyPath: m_Name

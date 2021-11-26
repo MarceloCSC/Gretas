@@ -41,7 +41,7 @@ namespace Gretas.Artworks.Videos
                 mainTexture = texture
             };
 
-            video.GetComponent<AudioSource>().mute = true;
+            videoPlayer.SetDirectAudioMute(0, true);
             video.GetComponentInChildren<MeshRenderer>().material = material;
         }
     }
