@@ -10517,6 +10517,34 @@ PrefabInstance:
       propertyPath: _room1CameraRotation.z
       value: -0.000009031642
       objectReference: {fileID: 0}
+    - target: {fileID: 7281558387970596045, guid: 60f09858261d1334abd00c48bf107c6a, type: 3}
+      propertyPath: _initialCameraPosition.x
+      value: 52.33434
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281558387970596045, guid: 60f09858261d1334abd00c48bf107c6a, type: 3}
+      propertyPath: _initialCameraPosition.y
+      value: 3.011349
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281558387970596045, guid: 60f09858261d1334abd00c48bf107c6a, type: 3}
+      propertyPath: _initialCameraPosition.z
+      value: 41.66431
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281558387970596045, guid: 60f09858261d1334abd00c48bf107c6a, type: 3}
+      propertyPath: _initialCameraRotation.w
+      value: 0.99999964
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281558387970596045, guid: 60f09858261d1334abd00c48bf107c6a, type: 3}
+      propertyPath: _initialCameraRotation.x
+      value: 0.0003926922
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281558387970596045, guid: 60f09858261d1334abd00c48bf107c6a, type: 3}
+      propertyPath: _initialCameraRotation.y
+      value: 0.00077667483
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281558387970596045, guid: 60f09858261d1334abd00c48bf107c6a, type: 3}
+      propertyPath: _initialCameraRotation.z
+      value: -0.000009031641
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60f09858261d1334abd00c48bf107c6a, type: 3}
 --- !u!1001 &1905134467

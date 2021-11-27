@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace Gretas.Environment
 {
-    public class CorridorSpawner : MonoBehaviour
+    public class CorridorSwapper : MonoBehaviour
     {
+        public event Action<Transform> OnActiveCorridor = delegate { };
+
         [SerializeField] private Transform _frontCorridor;
         [SerializeField] private Transform _backCorridor;
 
@@ -31,12 +34,16 @@ namespace Gretas.Environment
         private void PositionCorridorAsFirst()
         {
             _backCorridor.position = new Vector3(transform.position.x + _meshSize.x * 2, transform.position.y, transform.position.z);
+
+            OnActiveCorridor(_frontCorridor);
         }
 
         private void PositionCorridorAsLast()
         {
-            var firstCorridor = _frontCorridor.GetComponent<CorridorSpawner>().FrontCorridor;
+            var firstCorridor = _frontCorridor.GetComponent<CorridorSwapper>().FrontCorridor;
             firstCorridor.position = new Vector3(transform.position.x - _meshSize.x, transform.position.y, transform.position.z);
+
+            OnActiveCorridor(transform);
         }
     }
 }

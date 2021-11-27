@@ -134,39 +134,39 @@ MonoBehaviour:
   - m_Vertices: 0a0000000d000000
   m_SharedTextures: []
   m_Positions:
-  - {x: -108.46767, y: 0, z: -3.875}
-  - {x: -108.46767, y: 0, z: 4.625}
-  - {x: 45.618324, y: 0, z: -3.875}
-  - {x: 45.618324, y: 0, z: 4.625}
-  - {x: -108.46767, y: 0, z: -3.875}
-  - {x: 45.618324, y: 0, z: -3.875}
-  - {x: -108.46767, y: 9.4999, z: -3.875}
-  - {x: 45.618324, y: 9.4999, z: -3.875}
-  - {x: 45.618324, y: 0, z: 4.625}
-  - {x: -108.46767, y: 0, z: 4.625}
-  - {x: 45.618324, y: 9.4999, z: 4.625}
-  - {x: -108.46767, y: 9.4999, z: 4.625}
-  - {x: -108.46767, y: 9.4999, z: 4.625}
-  - {x: 45.618324, y: 9.4999, z: 4.625}
-  - {x: -108.46767, y: 9.4999, z: -3.875}
-  - {x: 45.618324, y: 9.4999, z: -3.875}
+  - {x: -139.42957, y: 0, z: -3.875}
+  - {x: -139.42957, y: 0, z: 4.625}
+  - {x: 60.570408, y: 0, z: -3.875}
+  - {x: 60.570408, y: 0, z: 4.625}
+  - {x: -139.42957, y: 0, z: -3.875}
+  - {x: 60.570408, y: 0, z: -3.875}
+  - {x: -139.42957, y: 9.4999, z: -3.875}
+  - {x: 60.570408, y: 9.4999, z: -3.875}
+  - {x: 60.570408, y: 0, z: 4.625}
+  - {x: -139.42957, y: 0, z: 4.625}
+  - {x: 60.570408, y: 9.4999, z: 4.625}
+  - {x: -139.42957, y: 9.4999, z: 4.625}
+  - {x: -139.42957, y: 9.4999, z: 4.625}
+  - {x: 60.570408, y: 9.4999, z: 4.625}
+  - {x: -139.42957, y: 9.4999, z: -3.875}
+  - {x: 60.570408, y: 9.4999, z: -3.875}
   m_Textures0:
-  - {x: -108.46767, y: -3.875}
-  - {x: -108.46767, y: 4.625}
-  - {x: 45.618324, y: -3.875}
-  - {x: 45.618324, y: 4.625}
-  - {x: 108.46767, y: 0}
-  - {x: -45.618324, y: 0}
-  - {x: 108.46767, y: 9.4999}
-  - {x: -45.618324, y: 9.4999}
-  - {x: 45.618324, y: 0}
-  - {x: -108.46767, y: 0}
-  - {x: 45.618324, y: 9.4999}
-  - {x: -108.46767, y: 9.4999}
-  - {x: 108.46767, y: 4.625}
-  - {x: -45.618324, y: 4.625}
-  - {x: 108.46767, y: -3.875}
-  - {x: -45.618324, y: -3.875}
+  - {x: -139.42957, y: -3.875}
+  - {x: -139.42957, y: 4.625}
+  - {x: 60.570408, y: -3.875}
+  - {x: 60.570408, y: 4.625}
+  - {x: 139.42957, y: 0}
+  - {x: -60.570408, y: 0}
+  - {x: 139.42957, y: 9.4999}
+  - {x: -60.570408, y: 9.4999}
+  - {x: 60.570408, y: 0}
+  - {x: -139.42957, y: 0}
+  - {x: 60.570408, y: 9.4999}
+  - {x: -139.42957, y: 9.4999}
+  - {x: 139.42957, y: 4.625}
+  - {x: -60.570408, y: 4.625}
+  - {x: 139.42957, y: -3.875}
+  - {x: -60.570408, y: -3.875}
   m_Textures2:
   - {x: 0, y: 0, z: 0, w: 0}
   - {x: 0, y: 0, z: 0, w: 0}
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 5741
+  m_VersionIndex: 6984
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -364,7 +364,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5388451016604766322}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44.91, y: 0, z: 0}
+  m_LocalPosition: {x: 70, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5388451015553667470}
@@ -404,7 +404,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6206834871934204321, guid: bd34d255b940ccc409477e3bb04fe78f, type: 3}
       propertyPath: _videoId
-      value: 649126868.sd.mp4?s=af72627b2f7dff61cfe2619ea6bf4160809e6ec2&profile_id=165
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7172024843767571176, guid: bd34d255b940ccc409477e3bb04fe78f, type: 3}
       propertyPath: m_LocalScale.x
@@ -576,7 +576,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6206834871934204321, guid: bd34d255b940ccc409477e3bb04fe78f, type: 3}
       propertyPath: _videoId
-      value: 649126868.sd.mp4?s=af72627b2f7dff61cfe2619ea6bf4160809e6ec2&profile_id=165
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7172024843767571176, guid: bd34d255b940ccc409477e3bb04fe78f, type: 3}
       propertyPath: m_LocalScale.x
@@ -674,7 +674,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6206834871934204321, guid: bd34d255b940ccc409477e3bb04fe78f, type: 3}
       propertyPath: _videoId
-      value: 649126868.sd.mp4?s=af72627b2f7dff61cfe2619ea6bf4160809e6ec2&profile_id=165
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7172024843767571176, guid: bd34d255b940ccc409477e3bb04fe78f, type: 3}
       propertyPath: m_LocalScale.x

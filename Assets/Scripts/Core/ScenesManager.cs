@@ -9,8 +9,8 @@ namespace Gretas.Core
         [SerializeField] private Camera _secondaryCamera;
         [SerializeField] private GameObject _navigationPanel;
         [SerializeField] private float _cameraSpeed = 5.0f;
-        [SerializeField] private Vector3 _room1CameraPosition;
-        [SerializeField] private Quaternion _room1CameraRotation;
+        [SerializeField] private Vector3 _initialCameraPosition;
+        [SerializeField] private Quaternion _initialCameraRotation;
 
         private bool _isCameraInPlace;
 
@@ -26,8 +26,7 @@ namespace Gretas.Core
             _userVision.CanLook = false;
             _mainCamera.enabled = false;
             _secondaryCamera.enabled = true;
-            _secondaryCamera.transform.position = _room1CameraPosition;
-            _secondaryCamera.transform.rotation = _room1CameraRotation;
+            _secondaryCamera.transform.SetPositionAndRotation(_initialCameraPosition, _initialCameraRotation);
             _navigationPanel.SetActive(false);
         }
 
