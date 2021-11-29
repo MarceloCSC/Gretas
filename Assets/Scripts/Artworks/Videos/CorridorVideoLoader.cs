@@ -44,7 +44,10 @@ namespace Gretas.Artworks.Videos
         {
             foreach (var corridor in _corridors)
             {
-                corridor.GetComponent<CorridorSwapper>().OnActiveCorridor -= ChangeActiveCorridor;
+                if (corridor)
+                {
+                    corridor.GetComponent<CorridorSwapper>().OnActiveCorridor -= ChangeActiveCorridor;
+                }
             }
         }
 

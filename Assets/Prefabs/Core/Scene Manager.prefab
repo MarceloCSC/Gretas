@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 566577399281611424}
   - component: {fileID: 7281558387970596045}
   m_Layer: 0
-  m_Name: Core
+  m_Name: Scene Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,6 +46,7 @@ MonoBehaviour:
   _mainCamera: {fileID: 0}
   _secondaryCamera: {fileID: 0}
   _navigationPanel: {fileID: 0}
-  _cameraSpeed: 5
-  _room1CameraPosition: {x: 13.069574, y: 3.7505436, z: -1.5754392}
-  _room1CameraRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
+  _initialPosition: {x: 0, y: 0, z: 0}
+  _initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  _speed: 2.5
+  _secondsBeforeStart: 1

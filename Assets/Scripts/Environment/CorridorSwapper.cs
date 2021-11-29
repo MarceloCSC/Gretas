@@ -16,8 +16,8 @@ namespace Gretas.Environment
 
         private void OnEnable()
         {
-            GetComponentInChildren<CorridorTrigger>().OnMoveForward += PositionCorridorAsFirst;
-            GetComponentInChildren<CorridorTrigger>().OnMoveBackward += PositionCorridorAsLast;
+            GetComponentInChildren<CorridorTrigger>().OnMoveForward += PlaceCorridorInFront;
+            GetComponentInChildren<CorridorTrigger>().OnMoveBackward += PlaceCorridorInBack;
         }
 
         private void Start()
@@ -27,21 +27,25 @@ namespace Gretas.Environment
 
         private void OnDisable()
         {
-            GetComponentInChildren<CorridorTrigger>().OnMoveForward -= PositionCorridorAsFirst;
-            GetComponentInChildren<CorridorTrigger>().OnMoveBackward -= PositionCorridorAsLast;
+            GetComponentInChildren<CorridorTrigger>().OnMoveForward -= PlaceCorridorInFront;
+            GetComponentInChildren<CorridorTrigger>().OnMoveBackward -= PlaceCorridorInBack;
         }
 
-        private void PositionCorridorAsFirst()
+        private void PlaceCorridorInFront()
         {
             _backCorridor.position = new Vector3(transform.position.x + _meshSize.x * 2, transform.position.y, transform.position.z);
+
+            CorridorManager.Instance.PlaceCorridorEnds(_backCorridor, transform, _meshSize.x);
 
             OnActiveCorridor(_frontCorridor);
         }
 
-        private void PositionCorridorAsLast()
+        private void PlaceCorridorInBack()
         {
             var firstCorridor = _frontCorridor.GetComponent<CorridorSwapper>().FrontCorridor;
             firstCorridor.position = new Vector3(transform.position.x - _meshSize.x, transform.position.y, transform.position.z);
+
+            CorridorManager.Instance.PlaceCorridorEnds(_frontCorridor, firstCorridor, _meshSize.x);
 
             OnActiveCorridor(transform);
         }

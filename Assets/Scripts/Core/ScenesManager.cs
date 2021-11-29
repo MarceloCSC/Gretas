@@ -8,9 +8,12 @@ namespace Gretas.Core
         [SerializeField] private Camera _mainCamera;
         [SerializeField] private Camera _secondaryCamera;
         [SerializeField] private GameObject _navigationPanel;
-        [SerializeField] private float _cameraSpeed = 5.0f;
-        [SerializeField] private Vector3 _initialCameraPosition;
-        [SerializeField] private Quaternion _initialCameraRotation;
+
+        [Header("Secondary Camera")]
+        [SerializeField] private Vector3 _initialPosition;
+        [SerializeField] private Quaternion _initialRotation;
+        [SerializeField] private float _speed = 2.5f;
+        [SerializeField] private float _secondsBeforeStart = 1.0f;
 
         private bool _isCameraInPlace;
 
@@ -26,13 +29,13 @@ namespace Gretas.Core
             _userVision.CanLook = false;
             _mainCamera.enabled = false;
             _secondaryCamera.enabled = true;
-            _secondaryCamera.transform.SetPositionAndRotation(_initialCameraPosition, _initialCameraRotation);
+            _secondaryCamera.transform.SetPositionAndRotation(_initialPosition, _initialRotation);
             _navigationPanel.SetActive(false);
         }
 
         private void LateUpdate()
         {
-            if (!_isCameraInPlace)
+            if (!_isCameraInPlace && Time.timeSinceLevelLoad > _secondsBeforeStart)
             {
                 ResettingCamera();
             }
@@ -40,8 +43,8 @@ namespace Gretas.Core
 
         private void ResettingCamera()
         {
-            Vector3 position = Vector3.MoveTowards(_secondaryCamera.transform.position, _mainCamera.transform.position, _cameraSpeed * Time.deltaTime);
-            Quaternion rotation = Quaternion.Slerp(_secondaryCamera.transform.rotation, _mainCamera.transform.rotation, _cameraSpeed * Time.deltaTime);
+            Vector3 position = Vector3.MoveTowards(_secondaryCamera.transform.position, _mainCamera.transform.position, _speed * Time.deltaTime);
+            Quaternion rotation = Quaternion.Slerp(_secondaryCamera.transform.rotation, _mainCamera.transform.rotation, _speed * Time.deltaTime);
 
             _secondaryCamera.transform.SetPositionAndRotation(position, rotation);
 
