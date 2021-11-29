@@ -30,27 +30,15 @@ namespace Gretas.Artworks.Videos
                 _videosPlayed.Add(videoUrl);
 
                 var videoPlayer = display.GetComponent<VideoPlayer>();
+
+                CreateRenderTexture(videoPlayer);
+
                 videoPlayer.SetDirectAudioVolume(0, 0.0f);
                 videoPlayer.SetDirectAudioMute(0, true);
                 videoPlayer.loopPointReached += SelectRandomVideo;
-
-                LoadVideo(videoPlayer, videoUrl);
+                videoPlayer.url = $"{videoUrl.baseUrl}/{videoUrl.videoId}";
+                videoPlayer.Play();
             }
-        }
-
-        private void LoadVideo(VideoPlayer videoPlayer, VideoUrl videoUrl)
-        {
-            var texture = new RenderTexture(1280, 720, 24);
-
-            videoPlayer.url = $"{videoUrl.baseUrl}/{videoUrl.videoId}";
-            videoPlayer.targetTexture = texture;
-
-            var material = new Material(Shader.Find("Unlit/Texture"))
-            {
-                mainTexture = texture
-            };
-
-            videoPlayer.GetComponentInChildren<MeshRenderer>().material = material;
         }
 
         private void SelectRandomVideo(VideoPlayer videoPlayer)
@@ -61,7 +49,8 @@ namespace Gretas.Artworks.Videos
                 _videosToPlay.Remove(videoUrl);
                 _videosPlayed.Add(videoUrl);
 
-                LoadVideo(videoPlayer, videoUrl);
+                videoPlayer.url = $"{videoUrl.baseUrl}/{videoUrl.videoId}";
+                videoPlayer.Play();
             }
             else
             {
@@ -73,6 +62,19 @@ namespace Gretas.Artworks.Videos
 
                 SelectRandomVideo(videoPlayer);
             }
+        }
+
+        private void CreateRenderTexture(VideoPlayer videoPlayer)
+        {
+            var texture = new RenderTexture(1280, 720, 24);
+            videoPlayer.targetTexture = texture;
+
+            var material = new Material(Shader.Find("Unlit/Texture"))
+            {
+                mainTexture = texture
+            };
+
+            videoPlayer.GetComponentInChildren<MeshRenderer>().material = material;
         }
     }
 }

@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _acceptButton: {fileID: 0}
-  _textMeshPro: {fileID: 0}
+  _messageDisplay: {fileID: 0}
   _firstSceneMessage: "come\xE7ar a visita?"
   _otherScenesMessage: continuar a visita?
   _lastSceneMessage: terminar a visita?

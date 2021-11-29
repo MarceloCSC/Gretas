@@ -29,7 +29,11 @@ namespace Gretas.User.Artworks
             _sceneLoadPanel.SetActive(false);
             //_infoPanel.SetActive(false);
             //_infoExpandButton.SetActive(false);
-            _imageLoader = _galleryManager.GetComponent<ImageLoader>();
+            if (_galleryManager.TryGetComponent(out ImageLoader imageLoader))
+            {
+                _imageLoader = imageLoader;
+            }
+
             //_infoLoader = _galleryManager.GetComponent<InfoLoader>();
         }
 
@@ -117,7 +121,6 @@ namespace Gretas.User.Artworks
         {
             _sceneLoadPanel.SetActive(true);
             _navigationPanel.SetActive(false);
-
         }
 
         private IEnumerator LoadTexture(string imageId)

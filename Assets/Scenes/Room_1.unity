@@ -466,6 +466,10 @@ PrefabInstance:
       propertyPath: m_Looping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7172024845126200753, guid: bd34d255b940ccc409477e3bb04fe78f, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7172024845126200758, guid: bd34d255b940ccc409477e3bb04fe78f, type: 3}
       propertyPath: m_RootOrder
       value: 12

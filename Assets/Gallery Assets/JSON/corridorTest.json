@@ -1,31 +1,28 @@
 {
   "videos": [
     {
+      "title": "Alberto Pereira",
       "videoId": "649081872.sd.mp4?s=22d81cec053ee23e736d588fbad6f24b0cac3b00&profile_id=164",
       "baseUrl": "https://player.vimeo.com/external"
     },
     {
+      "title": "Vanessa",
       "videoId": "649154103.sd.mp4?s=6649ba9d277566f6fafbcb9b03266c4430c3779b&profile_id=164",
       "baseUrl": "https://player.vimeo.com/external"
     },
     {
+      "title": "Marcelo Melo",
       "videoId": "649142790.sd.mp4?s=9c3fde549e765d4c4cc560d9310f9a9b00945f5e&profile_id=164",
       "baseUrl": "https://player.vimeo.com/external"
     },
     {
+      "title": "Lorena",
       "videoId": "649137420.sd.mp4?s=74cb43ad562990af8c3b483145d8a93692e4e5b7&profile_id=164",
       "baseUrl": "https://player.vimeo.com/external"
     },
     {
+      "title": "Davi Baltar",
       "videoId": "649126868.sd.mp4?s=af72627b2f7dff61cfe2619ea6bf4160809e6ec2&profile_id=164",
-      "baseUrl": "https://player.vimeo.com/external"
-    },
-    {
-      "videoId": "649115984.sd.mp4?s=f33d663804cfc2dce704ccbad8c905e1921b7f90&profile_id=164",
-      "baseUrl": "https://player.vimeo.com/external"
-    },
-    {
-      "videoId": "649102750.sd.mp4?s=f91d342d3895aa069f8d7e4c1ba6e37fe6db3026&profile_id=164",
       "baseUrl": "https://player.vimeo.com/external"
     }
   ]
