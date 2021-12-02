@@ -7,9 +7,9 @@ namespace Gretas.User
 {
     public class UserMovement : MonoBehaviour
     {
-        [SerializeField] private Camera _firstPersonCamera;
+        [SerializeField] private Camera _mainCamera;
         [SerializeField] private float _movementSpeed = 10.0f;
-        [SerializeField] private LayerMask _layerToClick;
+        [SerializeField] private LayerMask _layerMasks;
 
         private bool _isMovingAfterClicking;
         private bool _canMove;
@@ -31,12 +31,14 @@ namespace Gretas.User
         {
             _inputActions.User.Enable();
             _inputActions.User.Interact.canceled += ClickToMove;
+            _inputActions.User.Movement.performed += _ => _isMovingAfterClicking = false;
         }
 
         private void OnDisable()
         {
             _inputActions.User.Disable();
             _inputActions.User.Interact.canceled -= ClickToMove;
+            _inputActions.User.Movement.performed -= _ => _isMovingAfterClicking = false;
         }
 
         private void Update()
@@ -79,16 +81,19 @@ namespace Gretas.User
         {
             if (_canMove && context.interaction is PressInteraction && !EventSystem.current.currentSelectedGameObject)
             {
-                if (Physics.Raycast(_firstPersonCamera.ScreenPointToRay(Mouse.current.position.ReadValue()), out RaycastHit hit, 100.0f, _layerToClick))
+                if (Physics.Raycast(_mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()), out RaycastHit hit, 100.0f, _layerMasks))
                 {
-                    _targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-
-                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Portal"))
+                    if (hit.normal == Vector3.up)
                     {
-                        _targetPosition += transform.forward * 1.5f;
+                        _targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+                        _isMovingAfterClicking = true;
                     }
-
-                    _isMovingAfterClicking = true;
+                    else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Portal"))
+                    {
+                        _targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+                        _targetPosition += transform.forward * 1.5f;
+                        _isMovingAfterClicking = true;
+                    }
                 }
             }
         }

@@ -66,11 +66,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb429337b82e8f8489d4add5f1cf0a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _firstPersonCamera: {fileID: 7905256028155961268}
+  _mainCamera: {fileID: 7905256028155961268}
   _movementSpeed: 6
-  _layerToClick:
+  _layerMasks:
     serializedVersion: 2
-    m_Bits: 264
+    m_Bits: 392
 --- !u!114 &7905256027118045400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,9 +103,9 @@ MonoBehaviour:
   _secondaryCamera: {fileID: 0}
   _visualizationMargin: 0.5
   _speed: 5
-  _layerToClick:
+  _layerMasks:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 456
 --- !u!114 &8062827322553772739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +123,8 @@ MonoBehaviour:
   _imageExpandButton: {fileID: 0}
   _navigationPanel: {fileID: 0}
   _exitButton: {fileID: 0}
+  _sceneLoadPanel: {fileID: 0}
+  _refuseButton: {fileID: 0}
 --- !u!1 &7905256028155961270
 GameObject:
   m_ObjectHideFlags: 0

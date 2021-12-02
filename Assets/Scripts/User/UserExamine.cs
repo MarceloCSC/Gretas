@@ -1,6 +1,6 @@
+using System.Linq;
 using Gretas.Artworks.Images;
 using Gretas.Artworks.Labels;
-using Gretas.Artworks.Videos;
 using Gretas.Environment;
 using Gretas.User.Artworks;
 using UnityEngine;
@@ -16,7 +16,7 @@ namespace Gretas.User
         [SerializeField] private Camera _secondaryCamera;
         [SerializeField] private float _visualizationMargin = 0.5f;
         [SerializeField] private float _speed = 5.0f;
-        [SerializeField] private LayerMask _layerToClick;
+        [SerializeField] private LayerMask _layerMasks;
 
         private Vector3 _position;
         private Quaternion _rotation;
@@ -81,7 +81,9 @@ namespace Gretas.User
         {
             if (!_isExamining && context.interaction is PressInteraction && !EventSystem.current.currentSelectedGameObject)
             {
-                if (Physics.Raycast(_mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()), out RaycastHit hit, 100.0f, _layerToClick))
+                var hit = Physics.RaycastAll(_mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()), 100.0f, _layerMasks).OrderBy(hit => hit.distance).FirstOrDefault();
+
+                if (hit.collider && hit.collider.gameObject.layer == LayerMask.NameToLayer("Viewable"))
                 {
                     float minDistance = CalculateDistance(hit.transform.GetComponent<MeshRenderer>().bounds);
 
