@@ -2,7 +2,7 @@
 
 namespace Gretas.Artworks.Labels
 {
-    public class LabelDisplay : MonoBehaviour, IDisplay
+    public class LabelDisplay : MonoBehaviour
     {
         [SerializeField] private string _artworkId;
 

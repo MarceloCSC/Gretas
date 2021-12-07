@@ -1,8 +1,8 @@
 using System.Linq;
 using Gretas.Artworks.Images;
 using Gretas.Artworks.Labels;
-using Gretas.Environment;
-using Gretas.User.Artworks;
+using Gretas.Environment.Loaders;
+using Gretas.User.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;

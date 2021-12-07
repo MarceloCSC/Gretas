@@ -72,8 +72,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8004159491470627268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dbfb8b0c81986c4fbf076ca168f8567, type: 3}
+  m_Script: {fileID: 11500000, guid: 616c63f1eb099974a8dbd6d4efd19fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _videosDisplay: []
-  _videosJson: {fileID: 0}
+  _videosJson: {fileID: 4900000, guid: f7f6ee3ac372900459afb6b4dab5b7b2, type: 3}

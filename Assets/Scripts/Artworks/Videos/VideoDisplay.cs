@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Gretas.Artworks.Videos
 {
-    public class VideoDisplay : MonoBehaviour, IDisplay
+    public class VideoDisplay : MonoBehaviour
     {
         [SerializeField] private string _videoId;
         [SerializeField] private Vector2 _resolution;
