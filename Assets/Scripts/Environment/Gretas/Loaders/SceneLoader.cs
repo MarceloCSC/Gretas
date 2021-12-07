@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Gretas.Environment.Loaders
+namespace Gretas.Environment.Gretas.Loaders
 {
     public class SceneLoader : MonoBehaviour
     {
