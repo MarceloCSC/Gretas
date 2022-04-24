@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7905256027118045415}
   - component: {fileID: 7905256027118045400}
   - component: {fileID: 7905256027118045414}
+  - component: {fileID: 7752876480924509591}
   - component: {fileID: 8062827322553772739}
   m_Layer: 0
   m_Name: User
@@ -66,11 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb429337b82e8f8489d4add5f1cf0a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainCamera: {fileID: 7905256028155961268}
   _movementSpeed: 6
-  _layerMasks:
-    serializedVersion: 2
-    m_Bits: 392
 --- !u!114 &7905256027118045400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,6 +100,20 @@ MonoBehaviour:
   _secondaryCamera: {fileID: 0}
   _visualizationMargin: 0.5
   _speed: 5
+--- !u!114 &7752876480924509591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7905256027118045403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b78859698f48c40be4a04ab24a3a82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mainCamera: {fileID: 7905256028155961268}
+  _rayLength: 50
   _layerMasks:
     serializedVersion: 2
     m_Bits: 456

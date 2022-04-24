@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Gretas.Artworks.Images.Triggers;
 using Gretas.Core;
 using UnityEngine;
 using UnityEngine.Networking;

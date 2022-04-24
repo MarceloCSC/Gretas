@@ -7,12 +7,10 @@ namespace Gretas.User
 {
     public class UserMovement : MonoBehaviour
     {
-        [SerializeField] private Camera _mainCamera;
         [SerializeField] private float _movementSpeed = 10.0f;
-        [SerializeField] private LayerMask _layerMasks;
 
-        private bool _isMovingAfterClicking;
         private bool _canMove;
+        private bool _hasClicked;
         private Vector3 _targetPosition;
 
         private CharacterController _characterController;
@@ -30,35 +28,42 @@ namespace Gretas.User
         private void OnEnable()
         {
             _inputActions.User.Enable();
-            _inputActions.User.Interact.canceled += ClickToMove;
-            _inputActions.User.Movement.performed += _ => _isMovingAfterClicking = false;
+            _inputActions.User.Interact.canceled += OnClick;
+            _inputActions.User.Movement.performed += _ => StopMovement();
         }
 
         private void OnDisable()
         {
             _inputActions.User.Disable();
-            _inputActions.User.Interact.canceled -= ClickToMove;
-            _inputActions.User.Movement.performed -= _ => _isMovingAfterClicking = false;
+            _inputActions.User.Interact.canceled -= OnClick;
+            _inputActions.User.Movement.performed -= _ => StopMovement();
         }
 
         private void Update()
         {
-            if (_isMovingAfterClicking)
+            if (_hasClicked)
             {
-                MoveByClicking();
+                transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _movementSpeed * Time.deltaTime);
+
+                if (Vector3.Distance(transform.position, _targetPosition) <= 1.0f)
+                {
+                    StopMovement();
+                }
             }
             else if (_canMove)
             {
-                MoveWithKeyboard();
+                Vector2 inputValues = _inputActions.User.Movement.ReadValue<Vector2>();
+                Vector3 forwardMovement = transform.forward * inputValues.y;
+                Vector3 rightMovement = transform.right * inputValues.x;
+
+                _characterController.SimpleMove(Vector3.ClampMagnitude(forwardMovement + rightMovement, 1.0f) * _movementSpeed);
             }
         }
 
-        public void MoveToTarget(Transform target, bool isSelf = false)
+        public void MoveToTarget(Vector3 target)
         {
-            Vector3 offset = isSelf ? Vector3.zero : target.forward * 5.0f;
-            _targetPosition = target.position - offset;
-            _targetPosition.y = transform.position.y;
-            _isMovingAfterClicking = true;
+            _targetPosition = target;
+            _hasClicked = true;
         }
 
         public void MoveAfterTeleport(Transform portal)
@@ -67,45 +72,21 @@ namespace Gretas.User
             _targetPosition = newPosition;
         }
 
-        private void MoveWithKeyboard()
-        {
-            Vector2 inputValues = _inputActions.User.Movement.ReadValue<Vector2>();
-
-            Vector3 forwardMovement = transform.forward * inputValues.y;
-            Vector3 rightMovement = transform.right * inputValues.x;
-
-            _characterController.SimpleMove(Vector3.ClampMagnitude(forwardMovement + rightMovement, 1.0f) * _movementSpeed);
-        }
-
-        private void ClickToMove(InputAction.CallbackContext context)
+        private void OnClick(InputAction.CallbackContext context)
         {
             if (_canMove && context.interaction is PressInteraction && !EventSystem.current.currentSelectedGameObject)
             {
-                if (Physics.Raycast(_mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()), out RaycastHit hit, 100.0f, _layerMasks))
+                if (_targetPosition != Vector3.zero)
                 {
-                    if (hit.normal == Vector3.up)
-                    {
-                        _targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-                        _isMovingAfterClicking = true;
-                    }
-                    else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Portal"))
-                    {
-                        _targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-                        _targetPosition += transform.forward * 1.5f;
-                        _isMovingAfterClicking = true;
-                    }
+                    _hasClicked = true;
                 }
             }
         }
 
-        private void MoveByClicking()
+        private void StopMovement()
         {
-            transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _movementSpeed * Time.deltaTime);
-
-            if (Vector3.Distance(transform.position, _targetPosition) <= 1.0f)
-            {
-                _isMovingAfterClicking = false;
-            }
+            _hasClicked = false;
+            _targetPosition = Vector3.zero;
         }
     }
 }

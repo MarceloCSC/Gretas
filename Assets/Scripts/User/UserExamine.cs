@@ -1,7 +1,6 @@
 using System.Linq;
 using Gretas.Artworks.Images;
 using Gretas.Artworks.Labels;
-using Gretas.Environment.Gretas;
 using Gretas.Environment.Gretas.Loaders;
 using Gretas.User.UI;
 using UnityEngine;
@@ -17,8 +16,8 @@ namespace Gretas.User
         [SerializeField] private Camera _secondaryCamera;
         [SerializeField] private float _visualizationMargin = 0.5f;
         [SerializeField] private float _speed = 5.0f;
-        [SerializeField] private LayerMask _layerMasks;
 
+        private Transform _hitTransform;
         private Vector3 _position;
         private Quaternion _rotation;
         private bool _isPositioning;
@@ -72,7 +71,7 @@ namespace Gretas.User
             {
                 _isPositioning = false;
                 _isResetting = true;
-                _movement.MoveToTarget(transform, true);
+                _movement.MoveToTarget(transform.position);
                 _userUI.ActivatePanels(false);
                 _userUI.HideNavigation(false);
             }
@@ -82,41 +81,37 @@ namespace Gretas.User
         {
             if (!_isExamining && context.interaction is PressInteraction && !EventSystem.current.currentSelectedGameObject)
             {
-                var hit = Physics.RaycastAll(_mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()), 100.0f, _layerMasks).OrderBy(hit => hit.distance).FirstOrDefault();
-
-                if (hit.collider && hit.collider.gameObject.layer == LayerMask.NameToLayer("Viewable"))
+                if (_hitTransform)
                 {
-                    float minDistance = CalculateDistance(hit.transform.GetComponent<MeshRenderer>().bounds);
+                    float minDistance = CalculateDistance(_hitTransform.GetComponent<MeshRenderer>().bounds);
 
                     // Temporary solution!!! Change this down below later!
 
-                    float offset = hit.transform.localScale.x < hit.transform.localScale.y
-                        ? hit.transform.localScale.y / hit.transform.localScale.x
+                    float offset = _hitTransform.localScale.x < _hitTransform.localScale.y
+                        ? _hitTransform.localScale.y / _hitTransform.localScale.x
                         : 1.0f;
 
-                    _position = hit.transform.position - hit.transform.forward * minDistance * offset;
-                    _rotation = Quaternion.LookRotation(hit.transform.forward);
+                    _position = _hitTransform.position - _hitTransform.forward * minDistance * offset;
+                    _rotation = Quaternion.LookRotation(_hitTransform.forward);
 
                     ChangeCameras();
 
                     // Possibly rotate main camera to face painting
-                    _movement.CanMove = false;
-                    _movement.MoveToTarget(hit.transform);
                     _vision.CanLook = false;
                     _isPositioning = true;
                     _isExamining = true;
 
-                    if (hit.transform.GetComponent<SceneLoader>())
+                    if (_hitTransform.GetComponent<SceneLoader>())
                     {
                         _userUI.ActivateSceneLoadPanel();
                     }
-                    else if (hit.transform.parent.TryGetComponent(out ImageDisplay imageDisplay))
+                    else if (_hitTransform.parent.TryGetComponent(out ImageDisplay imageDisplay))
                     {
                         _userUI.ActivatePanels(true);
                         _userUI.HideNavigation(true);
                         _userUI.GetImageData(imageDisplay);
                     }
-                    else if (hit.transform.parent.GetComponent<LabelDisplay>() /*|| hit.transform.parent.GetComponent<VideoDisplay>()*/)
+                    else if (_hitTransform.parent.GetComponent<LabelDisplay>() /*|| hit.transform.parent.GetComponent<VideoDisplay>()*/)
                     {
                         _userUI.HideNavigation(true);
                     }
