@@ -126,7 +126,7 @@ The project combines technical experimentation with artistic and spatial explora
 - Designing interactive 3D environments for the web
 - Deploying Unity applications using WebGL and Azure services
 
-## Author
+# Author
 
 Marcelo Camargo  
 [LinkedIn](https://www.linkedin.com/in/marcelocsc/)  
