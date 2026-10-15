@@ -1,12 +1,8 @@
-using System.Linq;
 using Gretas.Artworks.Images;
 using Gretas.Artworks.Labels;
 using Gretas.Environment.Gretas.Loaders;
 using Gretas.User.UI;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Interactions;
 
 namespace Gretas.User
 {
@@ -41,14 +37,12 @@ namespace Gretas.User
         private void OnEnable()
         {
             _inputActions.User.Enable();
-            _inputActions.User.Interact.canceled += ExamineArtwork;
             _inputActions.User.Movement.performed += _ => ExitVisualization();
         }
 
         private void OnDisable()
         {
             _inputActions.User.Disable();
-            _inputActions.User.Interact.canceled -= ExamineArtwork;
             _inputActions.User.Movement.performed -= _ => ExitVisualization();
         }
 
@@ -77,45 +71,51 @@ namespace Gretas.User
             }
         }
 
-        private void ExamineArtwork(InputAction.CallbackContext context)
+        public void ExamineArtwork(Transform hitTransform)
         {
-            if (!_isExamining && context.interaction is PressInteraction && !EventSystem.current.currentSelectedGameObject)
+            if (_isExamining)
             {
-                if (_hitTransform)
-                {
-                    float minDistance = CalculateDistance(_hitTransform.GetComponent<MeshRenderer>().bounds);
+                return;
+            }
 
-                    // Temporary solution!!! Change this down below later!
+            _hitTransform = hitTransform;
 
-                    float offset = _hitTransform.localScale.x < _hitTransform.localScale.y
-                        ? _hitTransform.localScale.y / _hitTransform.localScale.x
-                        : 1.0f;
+            if (!_hitTransform)
+            {
+                return;
+            }
 
-                    _position = _hitTransform.position - _hitTransform.forward * minDistance * offset;
-                    _rotation = Quaternion.LookRotation(_hitTransform.forward);
+            float minDistance = CalculateDistance(_hitTransform.GetComponent<MeshRenderer>().bounds);
 
-                    ChangeCameras();
+            float offset = _hitTransform.localScale.x < _hitTransform.localScale.y
+                ? _hitTransform.localScale.y / _hitTransform.localScale.x
+                : 1.0f;
 
-                    // Possibly rotate main camera to face painting
-                    _vision.CanLook = false;
-                    _isPositioning = true;
-                    _isExamining = true;
+            _position =
+                _hitTransform.position -
+                _hitTransform.forward * minDistance * offset;
 
-                    if (_hitTransform.GetComponent<SceneLoader>())
-                    {
-                        _userUI.ActivateSceneLoadPanel();
-                    }
-                    else if (_hitTransform.parent.TryGetComponent(out ImageDisplay imageDisplay))
-                    {
-                        _userUI.ActivatePanels(true);
-                        _userUI.HideNavigation(true);
-                        _userUI.GetImageData(imageDisplay);
-                    }
-                    else if (_hitTransform.parent.GetComponent<LabelDisplay>() /*|| hit.transform.parent.GetComponent<VideoDisplay>()*/)
-                    {
-                        _userUI.HideNavigation(true);
-                    }
-                }
+            _rotation = Quaternion.LookRotation(_hitTransform.forward);
+
+            ChangeCameras();
+
+            _vision.CanLook = false;
+            _isPositioning = true;
+            _isExamining = true;
+
+            if (_hitTransform.GetComponent<SceneLoader>())
+            {
+                _userUI.ActivateSceneLoadPanel();
+            }
+            else if (_hitTransform.parent.TryGetComponent(out ImageDisplay imageDisplay))
+            {
+                _userUI.ActivatePanels(true);
+                _userUI.HideNavigation(true);
+                _userUI.GetImageData(imageDisplay);
+            }
+            else if (_hitTransform.parent.GetComponent<LabelDisplay>())
+            {
+                _userUI.HideNavigation(true);
             }
         }
 

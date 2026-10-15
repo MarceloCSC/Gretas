@@ -1,3 +1,4 @@
+using Gretas.Environment.Corridors.Triggers;
 using UnityEngine;
 
 namespace Gretas.Environment

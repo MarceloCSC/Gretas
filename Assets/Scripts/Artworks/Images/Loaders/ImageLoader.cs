@@ -1,6 +1,7 @@
+using Gretas.Artworks.Images.Triggers;
+using Gretas.Core;
 using System.Collections;
 using System.Collections.Generic;
-using Gretas.Core;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -38,6 +39,7 @@ namespace Gretas.Artworks.Images.Loaders
 
                     image.SurfaceToRender.GetComponent<MeshRenderer>().material = material;
                 }
+
                 else
                 {
                     image.GetComponentInChildren<ImageOptimizationTrigger>().OnProximity += OptimizeImage;

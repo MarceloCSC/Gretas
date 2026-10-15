@@ -1,5 +1,5 @@
-using System;
 using Gretas.Environment.Corridors.Triggers;
+using System;
 using UnityEngine;
 
 namespace Gretas.Environment.Corridors
@@ -12,13 +12,29 @@ namespace Gretas.Environment.Corridors
         [SerializeField] private Transform _backCorridor;
 
         private Vector3 _meshSize;
-
+        private CorridorTrigger _corridorTrigger;
         public Transform FrontCorridor => _frontCorridor;
+
+        private void Awake()
+        {
+            _corridorTrigger = GetComponentInChildren<CorridorTrigger>(true);
+        }
 
         private void OnEnable()
         {
-            GetComponentInChildren<CorridorTrigger>().OnMoveForward += PlaceCorridorInFront;
-            GetComponentInChildren<CorridorTrigger>().OnMoveBackward += PlaceCorridorInBack;
+            if (_corridorTrigger == null)
+            {
+                _corridorTrigger = GetComponentInChildren<CorridorTrigger>(true);
+            }
+
+            if (_corridorTrigger == null)
+            {
+                Debug.LogError($"CorridorTrigger not found in {name}", this);
+                return;
+            }
+
+            _corridorTrigger.OnMoveForward += PlaceCorridorInFront;
+            _corridorTrigger.OnMoveBackward += PlaceCorridorInBack;
         }
 
         private void Start()
@@ -28,8 +44,13 @@ namespace Gretas.Environment.Corridors
 
         private void OnDisable()
         {
-            GetComponentInChildren<CorridorTrigger>().OnMoveForward -= PlaceCorridorInFront;
-            GetComponentInChildren<CorridorTrigger>().OnMoveBackward -= PlaceCorridorInBack;
+            if (_corridorTrigger == null)
+            {
+                return;
+            }
+
+            _corridorTrigger.OnMoveForward -= PlaceCorridorInFront;
+            _corridorTrigger.OnMoveBackward -= PlaceCorridorInBack;
         }
 
         private void PlaceCorridorInFront()

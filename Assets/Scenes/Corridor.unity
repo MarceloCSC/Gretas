@@ -522,7 +522,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-48740
+  m_Name: pb_Mesh-53676
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1411,7 +1411,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-49034
+  m_Name: pb_Mesh-53970
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1697,7 +1697,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-48596
+  m_Name: pb_Mesh-53532
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1893,6 +1893,10 @@ PrefabInstance:
     - target: {fileID: 5388451015553667464, guid: 9dcbb6fe84767274c8f2f3de7d90358f, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5388451015553667464, guid: 9dcbb6fe84767274c8f2f3de7d90358f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5388451015553667466, guid: 9dcbb6fe84767274c8f2f3de7d90358f, type: 3}
       propertyPath: m_Mesh
@@ -2207,7 +2211,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23700
+  m_Name: pb_Mesh63628
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2932,7 +2936,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23676
+  m_Name: pb_Mesh63604
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4192,6 +4196,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corridor (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5388451015553667464, guid: 9dcbb6fe84767274c8f2f3de7d90358f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5388451015553667466, guid: 9dcbb6fe84767274c8f2f3de7d90358f, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -5227,7 +5235,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!114 &5388451015639330844
 MonoBehaviour:
@@ -5581,6 +5589,10 @@ PrefabInstance:
     - target: {fileID: 5388451015553667464, guid: 9dcbb6fe84767274c8f2f3de7d90358f, type: 3}
       propertyPath: m_Name
       value: Corridor (0)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5388451015553667464, guid: 9dcbb6fe84767274c8f2f3de7d90358f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5388451015553667466, guid: 9dcbb6fe84767274c8f2f3de7d90358f, type: 3}
       propertyPath: m_Mesh
@@ -6335,7 +6347,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!64 &8841487499650259358
 MeshCollider:
