@@ -1,63 +1,94 @@
-###############################################################################
-# Set default behavior to automatically normalize line endings.
-###############################################################################
+# ============================================================
+# Unity - Standard .gitattributes
+# Text normalization, binary assets, whitespace and Linguist
+# ============================================================
+
+# ------------------------------------------------------------
+# Default text normalization
+# ------------------------------------------------------------
+
 * text=auto
 
-###############################################################################
-# Set default behavior for command prompt diff.
-#
-# This is need for earlier builds of msysgit that does not have it on by
-# default for csharp files.
-# Note: This is only used by command line
-###############################################################################
-#*.cs     diff=csharp
+# ------------------------------------------------------------
+# Source code and configuration
+# ------------------------------------------------------------
 
-###############################################################################
-# Set the merge driver for project and solution files
-#
-# Merging from the command prompt will add diff markers to the files if there
-# are conflicts (Merging from VS is not affected by the settings below, in VS
-# the diff markers are never inserted). Diff markers may cause the following 
-# file extensions to fail to load in VS. An alternative would be to treat
-# these files as binary and thus will always conflict and require user
-# intervention with every merge. To do so, just uncomment the entries below
-###############################################################################
-#*.sln       merge=binary
-#*.csproj    merge=binary
-#*.vbproj    merge=binary
-#*.vcxproj   merge=binary
-#*.vcproj    merge=binary
-#*.dbproj    merge=binary
-#*.fsproj    merge=binary
-#*.lsproj    merge=binary
-#*.wixproj   merge=binary
-#*.modelproj merge=binary
-#*.sqlproj   merge=binary
-#*.wwaproj   merge=binary
+*.cs text
+*.json text
+*.asmdef text
+*.asmref text
+*.shader text
+*.compute text
+*.cginc text
+*.hlsl text
+*.inputactions text
 
-###############################################################################
-# behavior for image files
-#
-# image files are treated as binary by default.
-###############################################################################
-#*.jpg   binary
-#*.png   binary
-#*.gif   binary
+# ------------------------------------------------------------
+# Unity serialized assets
+# ------------------------------------------------------------
 
-###############################################################################
-# diff behavior for common document formats
-# 
-# Convert binary document formats to text before diffing them. This feature
-# is only available from the command line. Turn it on by uncommenting the 
-# entries below.
-###############################################################################
-#*.doc   diff=astextplain
-#*.DOC   diff=astextplain
-#*.docx  diff=astextplain
-#*.DOCX  diff=astextplain
-#*.dot   diff=astextplain
-#*.DOT   diff=astextplain
-#*.pdf   diff=astextplain
-#*.PDF   diff=astextplain
-#*.rtf   diff=astextplain
-#*.RTF   diff=astextplain
+*.meta text
+*.unity text
+*.prefab text
+*.asset text=auto
+*.anim text
+*.controller text
+*.mat text
+*.physicMaterial text
+*.physicsMaterial2D text
+*.renderTexture text=auto
+*.scenetemplate text=auto
+
+# ------------------------------------------------------------
+# Binary assets
+# ------------------------------------------------------------
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.psd binary
+*.tga binary
+*.tif binary
+*.tiff binary
+*.exr binary
+*.hdr binary
+
+*.fbx binary
+*.blend binary
+
+*.mp3 binary
+*.wav binary
+*.ogg binary
+*.mp4 binary
+*.mov binary
+
+*.ttf binary
+*.otf binary
+
+*.dll binary
+*.unitypackage binary
+
+# ------------------------------------------------------------
+# Unity-generated YAML whitespace
+# ------------------------------------------------------------
+
+*.asset whitespace=-blank-at-eol
+*.unity whitespace=-blank-at-eol
+*.prefab whitespace=-blank-at-eol
+*.meta whitespace=-blank-at-eol
+*.anim whitespace=-blank-at-eol
+*.controller whitespace=-blank-at-eol
+*.mat whitespace=-blank-at-eol
+*.physicMaterial whitespace=-blank-at-eol
+*.physicsMaterial2D whitespace=-blank-at-eol
+*.renderTexture whitespace=-blank-at-eol
+*.scenetemplate whitespace=-blank-at-eol
+
+# ------------------------------------------------------------
+# Third-party assets - TextMesh Pro
+# ------------------------------------------------------------
+
+"Assets/TextMesh Pro/Shaders/**" whitespace=-blank-at-eol,-blank-at-eof,-space-before-tab
+"Assets/TextMesh Pro/**" linguist-vendored
